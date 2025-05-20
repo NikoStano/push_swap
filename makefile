@@ -6,37 +6,41 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 19:03:41 by nistanoj          #+#    #+#              #
-#    Updated: 2025/05/20 19:35:02 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/05/20 22:51:24 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	push_swap.a
+NAME			=	push_swap
 HEADER			=	push_swap.h
-DIR_OBJ			=	obj
 
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
 COMPILE			=	$(CC) $(CFLAGS)
 
-SRCS			=	push_swap.c
-OBJ				=	$(SRCS:.c=.o)
+SRCS			=	./src/push_swap.c
+OBJS			=	$(SRCS:.c=.o)
 
-LIB				=	libft.a
+LIB_DIR			=	./libft
+LIB				=	$(LIB_DIR)/libft.a
 
-all		:	$(NAME)
+all		:	$(NAME) $(LIB)
 
-$(NAME)$(LIB)	:	$(OBJ) $(LIB)
-	@ar rcs $@ $^
+$(LIB)	:
+	@make -C $(LIB_DIR)
 
-$(OBJ_DIR)/%.o:	%.c $(INCLUDE)
-	@mkdir -p $(dir $@)
-	@$(COMPILE) -o $@ -c $<
+$(NAME)	:	$(OBJS) $(LIB)
+	@$(COMPILE) $(OBJS) -L$(LIB_DIR) -lft -o $(NAME)
+
+%.o:	%.c $(INCLUDE)
+	@$(COMPILE) -c $< -o $@
 
 clean	:
-	rm -rf $(DIR_OBJ)
+	@rm -f $(OBJS)
+	@make clean -C $(LIB_DIR)
 
 fclean	:	clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@make fclean -C $(LIB_DIR)
 
 re		:	fclean all
 
