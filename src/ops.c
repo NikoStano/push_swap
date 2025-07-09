@@ -6,11 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:10 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:05:25 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 08:17:52 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	op_pa(t_stack *a, t_stack *b)
 {

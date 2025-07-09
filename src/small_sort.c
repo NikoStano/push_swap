@@ -6,11 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:05:49 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 08:18:07 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	sort_small(t_stack *a)
 {

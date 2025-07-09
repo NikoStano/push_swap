@@ -6,19 +6,33 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:06:00 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:06:15 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 08:57:33 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
+static int  count_leq(t_stack *a, int pivot)
+{
+    int cnt = 0;
+    t_node *cur = a->top;
+    while (cur)
+    {
+        if (cur->value <= pivot)
+            cnt++;
+        cur = cur->next;
+    }
+    return (cnt);
+}
 
 void	push_chunk_to_b(t_stack *a, t_stack *b, int pivot)
 {
 	int	count;
-	int	i;
+	int	to_push;
 
 	count = 0;
-	while (count < a->size && a->top)
+	to_push = count_leq(a, pivot);
+	while (count < to_push)
 	{
 		if (a->top->value <= pivot)
 		{
@@ -26,9 +40,7 @@ void	push_chunk_to_b(t_stack *a, t_stack *b, int pivot)
 			count++;
 		}
 		else
-		{
 			op_ra(a);
-		}
 	}
 }
 

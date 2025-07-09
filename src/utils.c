@@ -6,11 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 07:57:06 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:04:03 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 08:18:18 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	error_exit(void)
 {
