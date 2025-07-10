@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:18:07 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 14:42:49 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	sort_small(t_stack *a)
 	int	z;
 
 	if (a->size == 2)
-		op_sa(a);
+		if (a->top->value > a->top->next->value)
+			op_sa(a);
 	if (a->size == 3)
 	{
 		x = a->top->value;

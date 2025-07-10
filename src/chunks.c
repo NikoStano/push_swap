@@ -6,23 +6,26 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:06:00 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/07/09 08:57:33 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:18:29 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int  count_leq(t_stack *a, int pivot)
+static int	count_leq(t_stack *a, int pivot)
 {
-    int cnt = 0;
-    t_node *cur = a->top;
-    while (cur)
-    {
-        if (cur->value <= pivot)
-            cnt++;
-        cur = cur->next;
-    }
-    return (cnt);
+	int		cnt;
+	t_node	*cur;
+
+	cnt = 0;
+	cur = a->top;
+	while (cur)
+	{
+		if (cur->value <= pivot)
+			cnt++;
+		cur = cur->next;
+	}
+	return (cnt);
 }
 
 void	push_chunk_to_b(t_stack *a, t_stack *b, int pivot)
