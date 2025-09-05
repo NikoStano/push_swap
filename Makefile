@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/05 15:05:11 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/05 18:42:55 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,16 @@ RM			=	rm -rf
 # CFLAGS 		+=	-fsanitize=address -g
 
 SRCS_DIR	=	srcs/
-SRCS		=	$(SRCS_DIR)op_one.c \
-				$(SRCS_DIR)op_two.c \
-				$(SRCS_DIR)op_three.c \
-				$(SRCS_DIR)sort_small.c \
-				$(SRCS_DIR)push_swap.c \
-				$(SRCS_DIR)add_stack.c \
-				$(SRCS_DIR)stack.c
+SRCS		=	$(SRCS_DIR)op/op_one.c \
+				$(SRCS_DIR)op/op_stack.c \
+				$(SRCS_DIR)op/op_three.c \
+				$(SRCS_DIR)op/op_two.c \
+				$(SRCS_DIR)sort/sort_heavy.c \
+				$(SRCS_DIR)sort/sort_small.c \
+				$(SRCS_DIR)utils/init_stack.c \
+				$(SRCS_DIR)utils/list_index.c \
+				$(SRCS_DIR)utils/list_utils.c \
+				$(SRCS_DIR)push_swap.c
 OBJS		=	$(SRCS:%.c=%.o)
 
 all:			$(NAME)

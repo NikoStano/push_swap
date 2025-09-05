@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 15:01:13 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:49:11 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void	stack_swap(t_stack *st);
 /* sort_small.c */
 void	sort_small(t_stack *a, t_stack *b);
 
+/* sort_heavy.c */
+int		sort_heavy(t_stack *a, t_stack *b);
+
 /* operations */
 void	op_pa(t_stack *a, t_stack *b);
 void	op_pb(t_stack *a, t_stack *b);
@@ -61,6 +64,14 @@ void	op_sa(t_stack *a);
 void	op_sb(t_stack *b);
 void	op_ss(t_stack *a, t_stack *b);
 
-/* Utils.c */
+/* chunk.c */
+int		index_list_a(t_stack *a, t_stack *indexed);
+
+/* utils.c */
+t_node	*list_new(int val);
+t_node	*listlast(t_node *top);
+void	list_add_back(t_node **top, t_node *new);
+void	list_delone(t_node *top);
+void	list_clear(t_node **top);
 
 #endif

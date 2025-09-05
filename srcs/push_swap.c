@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 15:11:40 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:51:37 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,20 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 
 	if (argc <= 2)
-		return (ft_printf("ERROR\n"), 0);
-	a = malloc(sizeof * a);
-	b = malloc(sizeof * b);
+		error_exit();
+	a = malloc(sizeof(t_stack));
+	b = malloc(sizeof(t_stack));
 	if (!a || !b)
 		error_exit();
 	stack_init(a);
 	stack_init(b);
 	add_stack(argv, a);
-	if ((a->size) - 1 <= 5)
+	if (a->size <= 5)
 		sort_small(a, b);
-	// else
-		// sort_heavy(a, b);
+	else
+		if (sort_heavy(a, b))
+			error_exit();
+	list_clear(&a->top);
+	a->size = 0;
 	return (free(a), free(b), 0);
 }
