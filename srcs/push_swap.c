@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 15:09:21 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:11:40 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	add_stack(argv, a);
 	if ((a->size) - 1 <= 5)
 		sort_small(a, b);
-	else
-		sort_heavy(a, b);
+	// else
+		// sort_heavy(a, b);
 	return (free(a), free(b), 0);
 }
