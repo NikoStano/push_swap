@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:14:35 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 09:01:37 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:42:04 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	bubble_sort(t_stack *sorted)
 		sorted->top = first;
 		while (j < sorted->size - i - 1)
 		{
-			if (sorted->top->value > sorted->top->next->value)
+			if (sorted->top->value < sorted->top->next->value)
 			{
 				tmp = sorted->top->value;
 				sorted->top->value = sorted->top->next->value;
@@ -68,13 +68,11 @@ int	get_indexed(t_node *a, t_stack *sorted)
 	j = sorted->top;
 	while (j)
 	{
-		printf("get_indexed: value= %d, index= %d\n", a->value, idx);
-		if (a->value == j->value)
-			return (idx);
-		idx++;
+		if (a->value > j->value)
+			idx++;
 		j = j->next;
 	}
-	return (-1);
+	return (idx);
 }
 
 int	index_list_a(t_stack *a)
@@ -89,7 +87,6 @@ int	index_list_a(t_stack *a)
 	stack_init(sorted);
 	if (copy_array(sorted, a))
 		return (free(sorted), 1);
-	bubble_sort(sorted);
 	if (get_indexed(first, sorted))
 	{
 		list_clear(&sorted->top);

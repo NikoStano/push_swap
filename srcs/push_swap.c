@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 08:41:42 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:25:45 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ int	main(int argc, char **argv)
 	stack_init(a);
 	stack_init(b);
 	add_stack(argv, a);
-	print_stack(a);
 	if (a->size <= 5)
 		sort_small(a, b);
 	else
 		if (sort_heavy(a, b))
 			error_exit();
-	print_stack(a);
 	list_clear(&a->top);
 	a->size = 0;
 	return (free(a), free(b), 0);

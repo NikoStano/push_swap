@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/08 08:06:26 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/08 21:45:33 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,8 @@ $(DIR_OBJ)%.o:			%.c
 # 	@echo "Compiling \033[1;32m$<\033[0m."
 
 norminette:
-	@python3 -m norminette $(SRCS) $(HEADER) $(LIBFT)
-# 	@norminette $(SRCS) $(HEADER) $(LIBFT)
+# 	@python3 -m norminette
+	@norminette
 	@echo "\033[1;32mNorminette check completed.\033[0m"
 
 clean:

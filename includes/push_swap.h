@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 08:26:39 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:54:11 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_stack
 	int		chunk_size;
 	int		chunk;
 	int		pushed;
+	int		index;
 }				t_stack;
 
 /* push_swap.c */
@@ -89,6 +90,8 @@ void	list_clear(t_node **top);
 /* utils.c */
 t_stack	*create_stack(t_stack *a);
 void	init_chunk(t_stack *a);
-void	print_stack(t_stack *st);
+// void	print_stack(t_stack *st);
+int		find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high);
+int		find_max_pos(t_stack *b, t_stack *sorted);
 
 #endif

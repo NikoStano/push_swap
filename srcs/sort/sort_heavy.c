@@ -6,102 +6,85 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 09:00:31 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:53:04 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	find_chunk_pos(t_stack *a, t_stack *sorted)
+static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)
 {
-	t_node	*cur;
-	int		idx;
-	int		i;
+	int	idx;
 
-	i = 0;
-	cur = a->top;
-	while (cur)
+	idx = get_indexed(a->top, sorted);
+	op_pb(a, b);
+	a->pushed++;
+	if (b->size > 1 && idx <= low + (a->chunk_size / 2))
+		op_rb(b);
+}
+
+static void	rotate_a_to_top(t_stack *a, int pos)
+{
+	int	k;
+
+	k = 0;
+	if (pos > a->size / 2)
 	{
-		idx = get_indexed(cur, sorted);
-		if (idx >= a->chunk * a->chunk_size && idx < (a->chunk + 1) * \
-			a->chunk_size)
-			return (i);
-		cur = cur->next;
-		i++;
+		k = a->size - pos;
+		while (k-- > 0)
+			op_rra(a);
 	}
-	return (-1);
+	else
+	{
+		while (pos-- > 0)
+			op_ra(a);
+	}
 }
 
 static void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *sorted)
 {
-	int	pos;
 	int	chunk_count;
+	int	pos;
+	int	low;
+	int	high;
+	int	k;
 
+	k = 0;
 	pos = 0;
 	chunk_count = 0;
-	while (chunk_count < a->chunk_size && a->pushed < a->size)
+	while (chunk_count < a->chunk_size)
 	{
-		int min = a->chunk * a->chunk_size;
-		int max = min + a->chunk_size;
-		printf("Chunk %d: index [%d, %d]\n", a->chunk, min, max);
-		pos = find_chunk_pos(a, sorted);
+		low = a->chunk * a->chunk_size;
+		high = low + a->chunk_size - 1;
+		if (high >= sorted->size)
+			high = sorted->size - 1;
+		pos = find_chunk_pos(a, sorted, low, high);
 		if (pos == -1)
 			break ;
-		if (pos <= a->size / 2)
-			while (pos-- > 0)
-				op_ra(a);
-		else
-			while (pos++ < a->size)
-				op_rra(a);
-		printf("push %d (index %d) dans B\n", a->top->value, get_indexed(a->top, sorted));
-		op_pb(a, b);
-		a->pushed++;
+		rotate_a_to_top(a, pos);
+		last_back(a, b, sorted, low);
 		chunk_count++;
 	}
-	a->chunk++;
-}
-
-static int	find_max_pos(t_stack *b, t_stack *sorted)
-{
-	t_node	*cur;
-	int		max_idx;
-	int		pos;
-	int		idx;
-	int		cur_idx;
-
-	max_idx = -1;
-	pos = 0;
-	idx = 0;
-	cur_idx = 0;
-	cur = b->top;
-	while (cur)
-	{
-		cur_idx = get_indexed(cur, sorted);
-		if (cur_idx)
-			return (-1);
-		if (cur_idx > max_idx)
-		{
-			max_idx = cur_idx;
-			pos = idx;
-		}
-		cur = cur->next;
-		idx++;
-	}
-	return (pos);
 }
 
 static void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted)
 {
 	int	pos;
+	int	k;
 
+	k = 0;
 	pos = find_max_pos(b, sorted);
-	if (pos <= b->size / 2)
+	if (pos > b->size / 2)
+	{
+		k = b->size - pos;
+		while (k-- > 0)
+			op_rrb(b);
+	}
+	else
+	{
 		while (pos-- > 0)
 			op_rb(b);
-	else
-		while (pos++ < b->size)
-			op_rrb(b);
-	printf("remonte %d (index %d) dans A\n", b->top->value, get_indexed(b->top, sorted));
+	}
 	op_pa(a, b);
 }
 
