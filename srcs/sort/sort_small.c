@@ -6,13 +6,13 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 14:59:05 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 05:24:19 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	rotate_up(t_stack *st, int size)
+void	rotate_up(t_stack *st, int size)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ static void	rotate_up(t_stack *st, int size)
 	}
 }
 
-static void	equal_to_three(t_stack *st)
+void	equal_to_three(t_stack *st)
 {
 	int	one;
 	int	two;
@@ -58,7 +58,7 @@ static void	equal_to_three(t_stack *st)
 		op_rra(st);
 }
 
-static void	push_to_b(t_stack *a, t_stack *b)
+void	push_to_b(t_stack *a, t_stack *b)
 {
 	int		i;
 	int		tmp;
@@ -84,7 +84,7 @@ static void	push_to_b(t_stack *a, t_stack *b)
 	op_pb(a, b);
 }
 
-static void	less_or_five(t_stack *a, t_stack *b)
+void	less_or_five(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
 		push_to_b(a, b);

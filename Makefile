@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/08 05:07:09 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/08 08:06:26 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		=	$(OP_DIR)op_one.c \
 				$(UTILS_DIR)init_stack.c \
 				$(UTILS_DIR)list_index.c \
 				$(UTILS_DIR)list_utils.c \
+				$(UTILS_DIR)utils.c \
 				$(SRCS_DIR)push_swap.c
 DIR_OBJ		=	obj/
 OBJS		=	$(SRCS:%.c=$(DIR_OBJ)%.o)

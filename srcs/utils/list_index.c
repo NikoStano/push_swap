@@ -6,13 +6,13 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:14:35 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 19:42:18 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:01:37 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	copy_array(t_stack *dst, t_stack *src)
+int	copy_array(t_stack *dst, t_stack *src)
 {
 	t_node	*n_lst;
 	t_node	*curr;
@@ -59,35 +59,25 @@ void	bubble_sort(t_stack *sorted)
 	}
 }
 
-static int	get_indexed(t_node *a, t_stack *sorted, t_stack *indexed)
+int	get_indexed(t_node *a, t_stack *sorted)
 {
 	t_node	*j;
-	t_node	*new;
-	int		value;
+	int		idx;
 
-	while (a)
+	idx = 0;
+	j = sorted->top;
+	while (j)
 	{
-		value = 0;
-		j = sorted->top;
-		while (j)
-		{
-			if (a->value == sorted->top->value)
-			{
-				new = list_new(value);
-				if (!new)
-					return (1);
-				list_add_back(&indexed->top, new);
-				break ;
-			}
-			value++;
-			j = j->next;
-		}
-		a = a->next;
+		printf("get_indexed: value= %d, index= %d\n", a->value, idx);
+		if (a->value == j->value)
+			return (idx);
+		idx++;
+		j = j->next;
 	}
-	return (0);
+	return (-1);
 }
 
-int	index_list_a(t_stack *a, t_stack *indexed)
+int	index_list_a(t_stack *a)
 {
 	t_stack	*sorted;
 	t_node	*first;
@@ -100,10 +90,9 @@ int	index_list_a(t_stack *a, t_stack *indexed)
 	if (copy_array(sorted, a))
 		return (free(sorted), 1);
 	bubble_sort(sorted);
-	if (get_indexed(first, sorted, indexed))
+	if (get_indexed(first, sorted))
 	{
 		list_clear(&sorted->top);
-		list_clear(&indexed->top);
 		return (free(sorted), 1);
 	}
 	list_clear(&sorted->top);

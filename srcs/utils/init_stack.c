@@ -6,13 +6,13 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 18:36:29 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/08 08:09:39 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	get_size(char **av)
+int	get_size(char **av)
 {
 	int	i;
 
