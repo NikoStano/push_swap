@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 16:35:06 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/04 12:27:52 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/08 05:05:56 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		=	libft.a
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -ggdb
 COMPILE		=	$(CC) $(CFLAGS)
+RM			=	rm -rf
 
 SRCS		=	ft_atoi.c \
 				ft_bzero.c \
@@ -70,23 +71,26 @@ SRCS		=	ft_atoi.c \
 				ft_print_hex.c \
 				ft_print_ptr.c \
 				ft_printf.c
-OBJ			=	$(SRCS:%.c=%.o)
+DIR_OBJ		=	obj/
+OBJ			=	$(SRCS:%.c=$(DIR_OBJ)%.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-	ar rcs $@ $^
-	@echo "libft linked into \033[1;32m$(NAME)\033[0m."
+	@ar rcs $@ $^
+	@echo "\033[1;32m$(NAME)\033[0m created successfully."
 
-%.o:		%.c
-	$(COMPILE) -o $@ -c $<
+$(DIR_OBJ)%.o:		%.c
+	@mkdir -p $(DIR_OBJ)
+	@$(COMPILE) -o $@ -c $<
 	
 clean:
-	rm -f $(OBJ)
+	@$(RM) $(DIR_OBJ)
+	@$(RM) $(OBJ)
 
 fclean:		clean
-	rm -f $(NAME)
-	@echo "\033[1;32m$(NAME)\033[0m deleted successfully."
+	@$(RM) $(NAME)
+	@echo "\033[1;32m$(NAME)\033[0m deleted."
 
 re:			fclean all
 

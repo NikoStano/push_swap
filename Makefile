@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/05 18:42:55 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/08 05:07:09 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,44 +24,51 @@ RM			=	rm -rf
 # CFLAGS 		+=	-fsanitize=address -g
 
 SRCS_DIR	=	srcs/
-SRCS		=	$(SRCS_DIR)op/op_one.c \
-				$(SRCS_DIR)op/op_stack.c \
-				$(SRCS_DIR)op/op_three.c \
-				$(SRCS_DIR)op/op_two.c \
-				$(SRCS_DIR)sort/sort_heavy.c \
-				$(SRCS_DIR)sort/sort_small.c \
-				$(SRCS_DIR)utils/init_stack.c \
-				$(SRCS_DIR)utils/list_index.c \
-				$(SRCS_DIR)utils/list_utils.c \
+OP_DIR		=	$(SRCS_DIR)op/
+SORT_DIR	=	$(SRCS_DIR)sort/
+UTILS_DIR	=	$(SRCS_DIR)utils/
+SRCS		=	$(OP_DIR)op_one.c \
+				$(OP_DIR)op_stack.c \
+				$(OP_DIR)op_three.c \
+				$(OP_DIR)op_two.c \
+				$(SORT_DIR)sort_heavy.c \
+				$(SORT_DIR)sort_small.c \
+				$(UTILS_DIR)init_stack.c \
+				$(UTILS_DIR)list_index.c \
+				$(UTILS_DIR)list_utils.c \
 				$(SRCS_DIR)push_swap.c
-OBJS		=	$(SRCS:%.c=%.o)
+DIR_OBJ		=	obj/
+OBJS		=	$(SRCS:%.c=$(DIR_OBJ)%.o)
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS) $(LIBFT_A)
 	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME)
-	@echo "Linked into executable \033[1;32m$(NAME)\033[0m."
+	@echo "Linked into executable :\n\033[1;32m$(NAME)\033[0m"
+	@echo "\033[1;32m>>> Use ./push_swap <numbers to sort> <<<\033[0m"
 
 $(LIBFT_A):
 	@make -s -C $(LIBFT)
 
-.c.o:
-	@$(COMPILE) -c $< -o $(<:.c=.o)
-	@echo "Compiling \033[1;32m$<\033[0m."
+$(DIR_OBJ)%.o:			%.c
+	@mkdir -p $(dir $@)
+	@$(COMPILE) -c $< -o $@
+# 	@echo "Compiling \033[1;32m$<\033[0m."
 
 norminette:
-	@norminette $(SRCS) $(HEADER) $(LIBFT)
+	@python3 -m norminette $(SRCS) $(HEADER) $(LIBFT)
+# 	@norminette $(SRCS) $(HEADER) $(LIBFT)
 	@echo "\033[1;32mNorminette check completed.\033[0m"
 
 clean:
 	@make clean -s -C $(LIBFT)
-	@$(RM) $(OBJS)
+	@$(RM) $(DIR_OBJ)
 	@echo "\033[1;32mOBJ file removed.\033[0m"
 
 fclean:			clean
 	@make fclean -s -C $(LIBFT)
 	@$(RM) $(NAME)
-	@echo "\033[1;32mExecutable removed.\033[0m"
+	@echo "\033[1;32mExecutable file removed.\033[0m"
 
 re:				fclean all
 
