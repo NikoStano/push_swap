@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 16:35:06 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/08 05:05:56 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/09 17:19:36 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,14 +63,14 @@ SRCS		=	ft_atoi.c \
 				ft_lstclear.c \
 				ft_lstiter.c \
 				ft_lstmap.c \
-				get_next_line.c \
-				get_next_line_utils.c \
 				ft_print_char.c \
 				ft_print_str.c \
 				ft_print_nbr.c \
 				ft_print_hex.c \
 				ft_print_ptr.c \
-				ft_printf.c
+				ft_printf.c \
+# 				get_next_line.c \
+# 				get_next_line_utils.c
 DIR_OBJ		=	obj/
 OBJ			=	$(SRCS:%.c=$(DIR_OBJ)%.o)
 

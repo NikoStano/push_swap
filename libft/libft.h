@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:18:27 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 05:18:06 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:19:05 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 					void (*del)(void *));
 
-/*GET_NEXT_LINE*/
-char			*get_next_line(int fd);
-size_t			ft_strlen_gnl(char *s);
-char			*ft_strchr_gnl(char *s, int c);
-char			*ft_strdup_gnl(char *s);
-char			*ft_substr_gnl(char *s, unsigned int start, size_t len);
-char			*ft_strjoin_gnl(char *s1, char *s2);
+// /*GET_NEXT_LINE*/
+// char			*get_next_line(int fd);
+// size_t			ft_strlen_gnl(char *s);
+// char			*ft_strchr_gnl(char *s, int c);
+// char			*ft_strdup_gnl(char *s);
+// char			*ft_substr_gnl(char *s, unsigned int start, size_t len);
+// char			*ft_strjoin_gnl(char *s1, char *s2);
 
 /*FT_PRINTF*/
 int				ft_printf(const char *format, ...);
