@@ -6,26 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 21:25:45 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:06:12 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
-void	stack_init(t_stack *st)
-{
-	st->top = NULL;
-	st->size = 0;
-	st->chunk_size = 0;
-	st->chunk = 0;
-	st->pushed = 0;
-}
 
 int	main(int argc, char **argv)
 {

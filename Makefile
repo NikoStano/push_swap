@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/08 21:45:33 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/09 17:12:10 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT		=	libft/
 LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER)
+CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER) -ggdb
 COMPILE		=	$(CC) $(CFLAGS)
 RM			=	rm -rf
 # CFLAGS 		+=	-fsanitize=address -g
@@ -33,9 +33,10 @@ SRCS		=	$(OP_DIR)op_one.c \
 				$(OP_DIR)op_two.c \
 				$(SORT_DIR)sort_heavy.c \
 				$(SORT_DIR)sort_small.c \
-				$(UTILS_DIR)init_stack.c \
+				$(SORT_DIR)sort_utils.c \
 				$(UTILS_DIR)list_index.c \
 				$(UTILS_DIR)list_utils.c \
+				$(UTILS_DIR)stack.c \
 				$(UTILS_DIR)utils.c \
 				$(SRCS_DIR)push_swap.c
 DIR_OBJ		=	obj/

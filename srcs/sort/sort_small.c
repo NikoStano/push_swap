@@ -6,30 +6,13 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 05:24:19 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:49:43 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	rotate_up(t_stack *st, int size)
-{
-	int	i;
-
-	i = st->size - size;
-	if ((st->size / 2) < size)
-	{
-		while (i-- > 0)
-			op_rra(st);
-	}
-	else
-	{
-		while (size-- > 0)
-			op_ra(st);
-	}
-}
-
-void	equal_to_three(t_stack *st)
+static void	equal_to_three(t_stack *st)
 {
 	int	one;
 	int	two;
@@ -58,33 +41,7 @@ void	equal_to_three(t_stack *st)
 		op_rra(st);
 }
 
-void	push_to_b(t_stack *a, t_stack *b)
-{
-	int		i;
-	int		tmp;
-	int		pos;
-	t_node	*first;
-
-	i = 0;
-	tmp = a->top->value;
-	pos = 0;
-	first = a->top;
-	while (a->top)
-	{
-		if (a->top->value < tmp)
-		{
-			i = pos;
-			tmp = a->top->value;
-		}
-		a->top = a->top->next;
-		pos++;
-	}
-	a->top = first;
-	rotate_up(a, i);
-	op_pb(a, b);
-}
-
-void	less_or_five(t_stack *a, t_stack *b)
+static void	less_or_five(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
 		push_to_b(a, b);

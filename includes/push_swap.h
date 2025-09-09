@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 21:54:11 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:02:06 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ typedef struct s_stack
 	int		index;
 }				t_stack;
 
-/* push_swap.c */
-void	stack_init(t_stack *st);
-void	error_exit(void);
-
 /* op_...c */
 void	op_pa(t_stack *a, t_stack *b);
 void	op_pb(t_stack *a, t_stack *b);
@@ -60,25 +56,19 @@ void	stack_rotate(t_stack *st);
 void	stack_reverse_rotate(t_stack *st);
 void	stack_swap(t_stack *st);
 
-/* sort_small.c */
-void	rotate_up(t_stack *st, int size);
-void	equal_to_three(t_stack *st);
-void	push_to_b(t_stack *a, t_stack *b);
-void	less_or_five(t_stack *a, t_stack *b);
-void	sort_small(t_stack *a, t_stack *b);
-
 /* sort_heavy.c */
 int		sort_heavy(t_stack *a, t_stack *b);
 
-/* init_stack.c */
-int		get_size(char **av);
-void	add_stack(char **av, t_stack *st);
+/* sort_small.c */
+void	sort_small(t_stack *a, t_stack *b);
+
+/* sort_utils.c */
+void	rotate_up(t_stack *st, int size);
+void	push_to_b(t_stack *a, t_stack *b);
+void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted);
 
 /* list_index.c */
-int		copy_array(t_stack *dst, t_stack *src);
-void	bubble_sort(t_stack *sorted);
 int		get_indexed(t_node *a, t_stack *sorted);
-int		index_list_a(t_stack *a);
 
 /* list_utils.c */
 t_node	*list_new(int val);
@@ -87,11 +77,23 @@ void	list_add_back(t_node **top, t_node *new);
 void	list_delone(t_node *top);
 void	list_clear(t_node **top);
 
+/* stack.c */
+void	stack_init(t_stack *st);
+t_stack	*copy_stack(t_stack *a);
+void	add_stack(char **av, t_stack *st);
+
 /* utils.c */
-t_stack	*create_stack(t_stack *a);
-void	init_chunk(t_stack *a);
+void	error_exit(void);
+int		copy_list(t_stack *dst, t_stack *src);
+
 // void	print_stack(t_stack *st);
-int		find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high);
-int		find_max_pos(t_stack *b, t_stack *sorted);
+// int		index_list_a(t_stack *a);
+// void	init_chunk(t_stack *a);
+// void	equal_to_three(t_stack *st);
+// void	less_or_five(t_stack *a, t_stack *b);
+// int		get_size(char **av);
+// void	bubble_sort(t_stack *sorted);
+// int		find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high);
+// int		find_max_pos(t_stack *b, t_stack *sorted);
 
 #endif

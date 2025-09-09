@@ -6,11 +6,41 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 21:53:04 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:45:56 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void	init_chunk(t_stack *a)
+{
+	if (a->size <= 100)
+		a->chunk_size = a->size / 5 + 1;
+	else
+		a->chunk_size = a->size / 11 + 1;
+	a->chunk = 0;
+	a->pushed = 0;
+	a->index = 0;
+}
+
+static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high)
+{
+	t_node	*cur;
+	int		idx;
+	int		i;
+
+	i = 0;
+	cur = a->top;
+	while (cur)
+	{
+		idx = get_indexed(cur, sorted);
+		if (idx >= low && idx <= high)
+			return (i);
+		cur = cur->next;
+		i++;
+	}
+	return (-1);
+}
 
 static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)
 {
@@ -21,24 +51,6 @@ static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)
 	a->pushed++;
 	if (b->size > 1 && idx <= low + (a->chunk_size / 2))
 		op_rb(b);
-}
-
-static void	rotate_a_to_top(t_stack *a, int pos)
-{
-	int	k;
-
-	k = 0;
-	if (pos > a->size / 2)
-	{
-		k = a->size - pos;
-		while (k-- > 0)
-			op_rra(a);
-	}
-	else
-	{
-		while (pos-- > 0)
-			op_ra(a);
-	}
 }
 
 static void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *sorted)
@@ -61,31 +73,10 @@ static void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *sorted)
 		pos = find_chunk_pos(a, sorted, low, high);
 		if (pos == -1)
 			break ;
-		rotate_a_to_top(a, pos);
+		rotate_up(a, pos);
 		last_back(a, b, sorted, low);
 		chunk_count++;
 	}
-}
-
-static void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted)
-{
-	int	pos;
-	int	k;
-
-	k = 0;
-	pos = find_max_pos(b, sorted);
-	if (pos > b->size / 2)
-	{
-		k = b->size - pos;
-		while (k-- > 0)
-			op_rrb(b);
-	}
-	else
-	{
-		while (pos-- > 0)
-			op_rb(b);
-	}
-	op_pa(a, b);
 }
 
 int	sort_heavy(t_stack *a, t_stack *b)
@@ -93,7 +84,7 @@ int	sort_heavy(t_stack *a, t_stack *b)
 	t_stack	*sorted;
 	int		total_chunks;
 
-	sorted = create_stack(a);
+	sorted = copy_stack(a);
 	if (!sorted)
 		return (1);
 	init_chunk(a);
