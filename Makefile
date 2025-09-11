@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/09 17:12:10 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/10 19:36:43 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS		=	$(OP_DIR)op_one.c \
 				$(SORT_DIR)sort_heavy.c \
 				$(SORT_DIR)sort_small.c \
 				$(SORT_DIR)sort_utils.c \
-				$(UTILS_DIR)list_index.c \
 				$(UTILS_DIR)list_utils.c \
 				$(UTILS_DIR)stack.c \
 				$(UTILS_DIR)utils.c \

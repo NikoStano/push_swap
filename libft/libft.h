@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:18:27 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/09 17:19:05 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:40:08 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	int				value;
 	struct s_list	*next;
 }						t_list;
 
@@ -75,16 +75,16 @@ void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 /*Fonction bonus*/
 
-t_list			*ft_lstnew(void *content);
+t_list			*ft_lstnew(int value);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstadd_back(t_list **lst, t_list *new);
-void			ft_lstdelone(t_list *lst, void (*del)(void *));
-void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
-					void (*del)(void *));
+void			ft_lstdelone(t_list *lst, void (*del)(int));
+void			ft_lstclear(t_list **lst, void (*del)(int));
+void			ft_lstiter(t_list *lst, void (*f)(int));
+t_list			*ft_lstmap(t_list *lst, int (*f)(int), \
+					void (*del)(int));
 
 // /*GET_NEXT_LINE*/
 // char			*get_next_line(int fd);

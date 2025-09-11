@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/09 16:45:56 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:06:15 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_chunk(t_stack *a)
 
 static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high)
 {
-	t_node	*cur;
+	t_list	*cur;
 	int		idx;
 	int		i;
 

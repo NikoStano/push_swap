@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:18:16 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/08 07:00:23 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:05:16 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	stack_push(t_stack *st, int value)
 {
-	t_node	*node;
+	t_list	*node;
 
-	node = malloc(sizeof(t_node));
+	node = malloc(sizeof(t_list));
 	if (!node)
 		error_exit();
 	node->value = value;
@@ -27,7 +27,7 @@ void	stack_push(t_stack *st, int value)
 
 int	stack_pop(t_stack *st)
 {
-	t_node	*tmp;
+	t_list	*tmp;
 	int		val;
 
 	if (st->size == 0)
@@ -42,8 +42,8 @@ int	stack_pop(t_stack *st)
 
 void	stack_rotate(t_stack *st)
 {
-	t_node	*frst;
-	t_node	*last;
+	t_list	*frst;
+	t_list	*last;
 
 	if (st->size < 2)
 		return ;
@@ -58,8 +58,8 @@ void	stack_rotate(t_stack *st)
 
 void	stack_reverse_rotate(t_stack *st)
 {
-	t_node	*prev;
-	t_node	*curr;
+	t_list	*prev;
+	t_list	*curr;
 
 	if (st->size < 2)
 		return ;
@@ -74,8 +74,8 @@ void	stack_reverse_rotate(t_stack *st)
 
 void	stack_swap(t_stack *st)
 {
-	t_node	*a;
-	t_node	*b;
+	t_list	*a;
+	t_list	*b;
 
 	if (st->size < 2)
 		return ;

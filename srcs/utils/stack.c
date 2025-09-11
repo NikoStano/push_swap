@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/09 17:11:23 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:07:54 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	bubble_sort(t_stack *sorted)
 	int		i;
 	int		j;
 	int		tmp;
-	t_node	*first;
+	t_list	*first;
 
 	i = 0;
 	first = sorted->top;
@@ -76,7 +76,7 @@ static int	get_size(char **av)
 void	add_stack(char **av, t_stack *st)
 {
 	int		i;
-	t_node	*new;
+	t_list	*new;
 
 	st->size = (get_size(av) - 1);
 	i = 0;
@@ -85,7 +85,7 @@ void	add_stack(char **av, t_stack *st)
 		if (av[i] && av[i + 1])
 		{
 			new = list_new(ft_atoi(av[i + 1]));
-			list_add_back(&st->top, new);
+			ft_lstadd_back(&st->top, new);
 		}
 		i++;
 	}

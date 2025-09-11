@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/09 16:34:11 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:35:04 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_to_b(t_stack *a, t_stack *b)
 	int		i;
 	int		tmp;
 	int		pos;
-	t_node	*first;
+	t_list	*first;
 
 	i = 0;
 	tmp = a->top->value;
@@ -55,9 +55,25 @@ void	push_to_b(t_stack *a, t_stack *b)
 	op_pb(a, b);
 }
 
+int	get_indexed(t_list *a, t_stack *sorted)
+{
+	t_list	*j;
+	int		idx;
+
+	idx = 0;
+	j = sorted->top;
+	while (j)
+	{
+		if (a->value > j->value)
+			idx++;
+		j = j->next;
+	}
+	return (idx);
+}
+
 static int	find_max_pos(t_stack *b, t_stack *sorted)
 {
-	t_node	*cur;
+	t_list	*cur;
 	int		max_idx;
 	int		pos;
 	int		idx;
