@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/10 20:06:15 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:20:45 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ static void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *sorted)
 	int	pos;
 	int	low;
 	int	high;
-	int	k;
 
-	k = 0;
 	pos = 0;
 	chunk_count = 0;
 	while (chunk_count < a->chunk_size)
