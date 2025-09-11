@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:12:17 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/11 21:13:13 by nistanoj         ###   ########.fr       */
+/*   Created: 2025/09/11 21:12:34 by nistanoj          #+#    #+#             */
+/*   Updated: 2025/09/11 21:14:40 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int		neg;
-	long	nb;
+	int			neg;
+	long long	nb;
 
 	neg = 1;
 	nb = 0;
@@ -30,6 +30,10 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(*nptr))
 	{
 		nb = nb * 10 + *nptr - '0';
+		if (nb * neg > INT_MAX)
+			return ((long)INT_MAX + 1);
+		if (nb * neg < INT_MIN)
+			return ((long)INT_MIN - 1);
 		nptr++;
 	}
 	return (nb * neg);

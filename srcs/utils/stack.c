@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/10 20:07:54 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:15:13 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,21 @@ void	add_stack(char **av, t_stack *st)
 {
 	int		i;
 	t_list	*new;
+	long	value;
 
+	value = 0;
 	st->size = (get_size(av) - 1);
 	i = 0;
 	while (i < st->size)
 	{
 		if (av[i] && av[i + 1])
 		{
-			new = list_new(ft_atoi(av[i + 1]));
+			value = ft_atol(av[i + 1]);
+			if (value > INT_MAX || value < INT_MIN)
+				error_exit();
+			new = list_new((int)value);
+			if (!new)
+				error_exit();
 			ft_lstadd_back(&st->top, new);
 		}
 		i++;
