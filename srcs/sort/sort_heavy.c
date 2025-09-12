@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/11 21:20:45 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 16:32:19 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	sort_heavy(t_stack *a, t_stack *b)
 	sorted = copy_stack(a);
 	if (!sorted)
 		return (1);
+	bubble_sort(sorted);
 	init_chunk(a);
 	total_chunks = (sorted->size + a->chunk_size - 1) / a->chunk_size;
 	while (a->chunk < total_chunks && a->size > 0)

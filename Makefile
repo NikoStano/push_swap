@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/10 19:36:43 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/11 21:42:16 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,4 +75,27 @@ re:				fclean all
 
 bonus:			all
 
-.PHONY:			all norminette clean fclean re bonus
+test: $(NAME)
+	@echo "$(BLUE)--- Testing push_swap ---$(NO_COLOR)"
+	@echo "$(BLUE)Test with 5 numbers: $(NO_COLOR)"
+	@./$(NAME) 3 1 2 5 4
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)--- Tests complete ---$(NO_COLOR)"
+
+.PHONY:			all norminette clean fclean re bonus test

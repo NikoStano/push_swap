@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/10 20:38:55 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:22:16 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,15 @@ int		copy_list(t_stack *dst, t_stack *src);
 
 /* stack.c */
 void	stack_init(t_stack *st);
+void	bubble_sort(t_stack *st);
 t_stack	*copy_stack(t_stack *a);
+long	ft_atol(const char *nptr);
 void	add_stack(char **av, t_stack *st);
 
 /* utils.c */
 void	error_exit(void);
+int		check_sort_list(t_stack *st);
+int		exist_in_stack(t_stack *st, int value);
+long	atol_ps(const char *nptr);
 
 #endif

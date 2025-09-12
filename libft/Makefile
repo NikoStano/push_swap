@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 16:35:06 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/11 21:15:03 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/12 17:04:05 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ COMPILE		=	$(CC) $(CFLAGS)
 RM			=	rm -rf
 
 SRCS		=	ft_atoi.c \
-				ft_atol.c \
 				ft_bzero.c \
 				ft_calloc.c \
 				ft_isalnum.c \
