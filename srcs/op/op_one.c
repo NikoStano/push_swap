@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:10 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/05 15:04:49 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:19:17 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,14 @@ void	op_pb(t_stack *a, t_stack *b)
 	write(1, "pb\n", 3);
 }
 
-void	op_ra(t_stack *a)
+void	op_sa(t_stack *a)
 {
-	stack_rotate(a);
-	write(1, "ra\n", 3);
+	stack_swap(a);
+	write(1, "sa\n", 3);
 }
 
-void	op_rb(t_stack *b)
+void	op_sb(t_stack *b)
 {
-	stack_rotate(b);
-	write(1, "rb\n", 3);
-}
-
-void	op_rr(t_stack *a, t_stack *b)
-{
-	stack_rotate(a);
-	stack_rotate(b);
-	write(1, "rr\n", 3);
+	stack_swap(b);
+	write(1, "sb\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:18:27 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 19:23:05 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:05:30 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strnstr(const char *haystack, const char *needle, \
 					size_t len);
 int				ft_atoi(const char *nptr);
-// long			ft_atol(const char *nptr);
+long			ft_atol(const char *nptr);
 char			*ft_strdup(const char *s1);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
