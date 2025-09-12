@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 16:07:11 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:04:52 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	main(int argc, char **argv)
 				error_exit();
 	}
 	list_clear(&a->top);
-	a->size = 0;
 	return (free(a), free(b), 0);
 }

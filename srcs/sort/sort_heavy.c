@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 16:32:19 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:29:51 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,29 @@ static void	init_chunk(t_stack *a)
 
 static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high)
 {
-	t_list	*cur;
+	t_stack	*cur;
 	int		idx;
 	int		i;
+	t_list	*first;
 
 	i = 0;
-	cur = a->top;
-	while (cur)
+	cur = copy_stack(a);
+	if (!cur)
+		error_exit();
+	first = cur->top;
+	while (cur->top)
 	{
-		idx = get_indexed(cur, sorted);
+		idx = get_indexed(cur->top, sorted);
 		if (idx >= low && idx <= high)
-			return (i);
-		cur = cur->next;
+		{
+			list_clear(&first);
+			return (free(cur), i);
+		}
+		cur->top = cur->top->next;
 		i++;
 	}
-	return (-1);
+	list_clear(&first);
+	return (free(cur), -1);
 }
 
 static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)

@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 17:22:02 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:25:15 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,26 @@ void	error_exit(void)
 
 int	check_sort_list(t_stack *st)
 {
-	int	value;
-	t_stack *sorted;
+	int		value;
+	t_stack	*sorted;
+	t_list	*first;
 
 	sorted = copy_stack(st);
 	if (!sorted)
 		error_exit();
 	value = sorted->top->value;
+	first = sorted->top;
 	while (sorted->top)
 	{
-
 		if (value > sorted->top->value)
 		{
-			list_clear(&sorted->top);
+			list_clear(&first);
 			return (free(sorted), 1);
 		}
 		value = sorted->top->value;
 		sorted->top = sorted->top->next;
 	}
-	list_clear(&sorted->top);
+	list_clear(&first);
 	return (free(sorted), 0);
 }
 
