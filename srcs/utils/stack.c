@@ -6,20 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 18:51:12 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:03:33 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	stack_init(t_stack *st)
-{
-	st->top = NULL;
-	st->size = 0;
-	st->chunk_size = 0;
-	st->chunk = 0;
-	st->pushed = 0;
-}
 
 void	bubble_sort(t_stack *st)
 {
@@ -62,39 +53,66 @@ t_stack	*copy_stack(t_stack *a)
 	return (st);
 }
 
-static int	get_size(char **av)
-{
-	int	i;
+// static int	get_size(char **av)
+// {
+// 	int	i;
 
-	i = 1;
-	while (av[i])
-		i++;
-	return (i);
-}
+// 	i = 1;
+// 	while (av[i])
+// 		i++;
+// 	return (i - 1);
+// }
 
-void	add_stack(char **av, t_stack *st)
+// void	add_stack(char **av, t_stack *st)
+// {
+// 	int		i;
+// 	t_list	*new;
+// 	long	value;
+
+// 	value = 0;
+// 	stack_init(st);
+// 	st->size = get_size(av);
+// 	i = 0;
+// 	while (i < st->size)
+// 	{
+// 		if (av[i] && av[i + 1])
+// 		{
+// 			value = atol_ps(av[i + 1]);
+// 			if (value > INT_MAX || value < INT_MIN)
+// 				error_exit();
+// 			if (exist_in_stack(st, (int)value))
+// 				error_exit();
+// 			new = list_new((int)value);
+// 			if (!new)
+// 				error_exit();
+// 			ft_lstadd_back(&st->top, new);
+// 		}
+// 		i++;
+// 	}
+// }
+
+void	add_stack(char **splited, t_stack *st)
 {
 	int		i;
 	t_list	*new;
 	long	value;
 
 	value = 0;
-	st->size = (get_size(av) - 1);
+	stack_init(st);
 	i = 0;
-	while (i < st->size)
+	while (splited[i])
 	{
-		if (av[i] && av[i + 1])
-		{
-			value = atol_ps(av[i + 1]);
-			if (value > INT_MAX || value < INT_MIN)
-				error_exit();
-			if (exist_in_stack(st, (int)value))
-				error_exit();
-			new = list_new((int)value);
-			if (!new)
-				error_exit();
-			ft_lstadd_back(&st->top, new);
-		}
+		if (splited[i][0] == '\0')
+			error_exit();
+		if (!is_valid_int(splited[i], &value))
+			error_exit();
+		if (exist_in_stack(st, (int)value))
+			error_exit();
+		new = list_new((int)value);
+		if (!new)
+			error_exit();
+		ft_lstadd_back(&st->top, new);
+		st->size++;
 		i++;
 	}
 }

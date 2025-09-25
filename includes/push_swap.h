@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 21:22:53 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:39:38 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void	list_delone(t_list *top);
 void	list_clear(t_list **top);
 int		copy_list(t_stack *dst, t_stack *src);
 // void	print_stack(t_stack *st);
+
+/* parse.c */
+char	**split_args(int ac, char **av, int *need_free);
+int		is_valid_int(const char *s, long *out);
 
 /* stack.c */
 void	stack_init(t_stack *st);

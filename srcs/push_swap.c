@@ -6,34 +6,53 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 19:04:52 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:05:05 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+void	stack_init(t_stack *st)
+{
+	st->top = NULL;
+	st->size = 0;
+	st->chunk_size = 0;
+	st->chunk = 0;
+	st->pushed = 0;
+}
+
+static void	choose_sort(t_stack *a, t_stack *b)
+{
+	stack_init(b);
+	if (a->size <= 5)
+		sort_small(a, b);
+	else
+		if (sort_heavy(a, b))
+			error_exit();
+}
+
+int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	char	**splited;
+	int		need_free;
 
-	if (argc <= 2)
+	if (ac < 2)
+		error_exit();
+	need_free = 0;
+	splited = split_args(ac, av, &need_free);
+	if (!splited)
 		error_exit();
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	if (!a || !b)
 		error_exit();
-	stack_init(a);
-	stack_init(b);
-	add_stack(argv, a);
+	add_stack(splited, a);
 	if (check_sort_list(a))
-	{
-		if (a->size <= 5)
-			sort_small(a, b);
-		else
-			if (sort_heavy(a, b))
-				error_exit();
-	}
+		choose_sort(a, b);
 	list_clear(&a->top);
+	if (need_free)
+		ft_free_split(splited);
 	return (free(a), free(b), 0);
 }

@@ -6,11 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 17:41:20 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 17:11:41 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:38:53 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 t_list	*list_new(int val)
 {

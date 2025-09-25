@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:16:31 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/08/05 02:49:43 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:01:24 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ static void	ft_free(char **split, size_t i)
 
 	j = 0;
 	while (j < i)
-	{
-		free(split[j]);
-		j++;
-	}
+		free(split[j++]);
 	free (split);
 }
 
