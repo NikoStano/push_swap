@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/12 19:25:15 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/29 01:14:10 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,45 +57,39 @@ int	exist_in_stack(t_stack *st, int value)
 	return (0);
 }
 
-static int	ft_isadigit(const char *s)
+char	**split_args(int ac, char **av, int *need_free)
 {
-	int	i;
+	char	**split;
 
-	i = 0;
-	while (s[i])
+	*need_free = 0;
+	if (ac < 2)
+		return (NULL);
+	if (ac == 2)
 	{
-		if (!ft_isdigit(s[i]))
-			return (0);
-		i++;
+		split = ft_split(av[1], ' ');
+		if (!split || !split[0])
+		{
+			ft_free_split(split);
+			return (NULL);
+		}
+		*need_free = 1;
+		return (split);
 	}
-	return (1);
+	return (av + 1);
 }
 
-long	atol_ps(const char *nptr)
+int	is_valid_int(const char *s, long *out)
 {
-	int			neg;
-	long long	nb;
+	char	*end;
+	long	v;
 
-	neg = 1;
-	nb = 0;
-	while (ft_isspace(*nptr))
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			neg = -1;
-		nptr++;
-	}
-	if (!ft_isadigit(nptr))
-		error_exit();
-	while (ft_isdigit(*nptr))
-	{
-		nb = nb * 10 + *nptr - '0';
-		if (nb * neg > INT_MAX)
-			return ((long)INT_MAX + 1);
-		if (nb * neg < INT_MIN)
-			return ((long)INT_MIN - 1);
-		nptr++;
-	}
-	return (nb * neg);
+	if (!s || !*s)
+		return (0);
+	v = ft_strtol(s, &end, 10);
+	if (*end != '\0')
+		return (0);
+	if (v < INT_MIN || v > INT_MAX)
+		return (0);
+	*out = v;
+	return (1);
 }

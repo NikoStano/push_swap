@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/15 19:40:48 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/29 01:14:31 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ LIBFT		=	libft/
 LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER) -ggdb
+CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER)
 COMPILE		=	$(CC) $(CFLAGS)
 RM			=	rm -rf
-# CFLAGS 		+=	-fsanitize=address -g
+# CFLAGS 		+=	-fsanitize=address -ggdb
 
 SRCS_DIR	=	srcs/
 OP_DIR		=	$(SRCS_DIR)op/
@@ -35,7 +35,6 @@ SRCS		=	$(OP_DIR)op_one.c \
 				$(SORT_DIR)sort_small.c \
 				$(SORT_DIR)sort_utils.c \
 				$(UTILS_DIR)list_utils.c \
-				$(UTILS_DIR)parse.c \
 				$(UTILS_DIR)stack.c \
 				$(UTILS_DIR)utils.c \
 				$(SRCS_DIR)push_swap.c
@@ -51,11 +50,11 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS) $(LIBFT_A)
 	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME)
-	@echo "Linked into executable :\n$(GREEN)$(NAME)$(NO_COLOR)"
+	@echo "Linked into executable :\npush_swap\n$(GREEN)$(NAME)$(NO_COLOR)"
 	@echo "$(GREEN)>>> Use ./push_swap <numbers to sort> <<<$(NO_COLOR)"
 
-$(LIBFT_A):
-	@make -s -C $(LIBFT)
+$(LIBFT_A): $(LIBFT)*.c $(LIBFT)*.h $(LIBFT)Makefile
+	@$(MAKE) -s -C $(LIBFT) all
 
 $(DIR_OBJ)%.o:			%.c
 	@mkdir -p $(dir $@)
@@ -63,9 +62,9 @@ $(DIR_OBJ)%.o:			%.c
 # 	@echo "Compiling \033[1;32m$<$(NO_COLOR)."
 
 norminette:
+	@echo "\$(BLUE)Norminette check :$(NO_COLOR)"
 # 	@python3 -m norminette
 	@norminette
-	@echo "\$(GREEN)Norminette check completed.$(NO_COLOR)"
 
 clean:
 	@make clean -s -C $(LIBFT)
@@ -103,5 +102,6 @@ test: $(NAME)
 	./$(NAME) "$$ARG" | ./checker "$$ARG"
 	@echo ""
 	@echo "$(GREEN)--- Tests complete ---$(NO_COLOR)"
+	@make fclean -s
 
 .PHONY:			all norminette clean fclean re bonus test

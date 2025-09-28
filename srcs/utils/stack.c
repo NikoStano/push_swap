@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/15 19:03:33 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/28 22:24:44 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,44 +52,6 @@ t_stack	*copy_stack(t_stack *a)
 		return (free(st), NULL);
 	return (st);
 }
-
-// static int	get_size(char **av)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (av[i])
-// 		i++;
-// 	return (i - 1);
-// }
-
-// void	add_stack(char **av, t_stack *st)
-// {
-// 	int		i;
-// 	t_list	*new;
-// 	long	value;
-
-// 	value = 0;
-// 	stack_init(st);
-// 	st->size = get_size(av);
-// 	i = 0;
-// 	while (i < st->size)
-// 	{
-// 		if (av[i] && av[i + 1])
-// 		{
-// 			value = atol_ps(av[i + 1]);
-// 			if (value > INT_MAX || value < INT_MIN)
-// 				error_exit();
-// 			if (exist_in_stack(st, (int)value))
-// 				error_exit();
-// 			new = list_new((int)value);
-// 			if (!new)
-// 				error_exit();
-// 			ft_lstadd_back(&st->top, new);
-// 		}
-// 		i++;
-// 	}
-// }
 
 void	add_stack(char **splited, t_stack *st)
 {

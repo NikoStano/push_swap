@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/10 20:35:04 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/29 01:09:43 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,6 @@ void	rotate_up(t_stack *st, int size)
 		while (size-- > 0)
 			op_ra(st);
 	}
-}
-
-void	push_to_b(t_stack *a, t_stack *b)
-{
-	int		i;
-	int		tmp;
-	int		pos;
-	t_list	*first;
-
-	i = 0;
-	tmp = a->top->value;
-	pos = 0;
-	first = a->top;
-	while (a->top)
-	{
-		if (a->top->value < tmp)
-		{
-			i = pos;
-			tmp = a->top->value;
-		}
-		a->top = a->top->next;
-		pos++;
-	}
-	a->top = first;
-	rotate_up(a, i);
-	op_pb(a, b);
 }
 
 int	get_indexed(t_list *a, t_stack *sorted)
