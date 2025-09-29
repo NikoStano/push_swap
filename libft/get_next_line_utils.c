@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:41:15 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/03 15:38:36 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/29 13:50:06 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ char	*ft_strchr_gnl(char *s, int c)
 
 char	*ft_strdup_gnl(char *s)
 {
-	char	*dup;
+	char	*new;
 	int		i;
 
-	dup = malloc(sizeof(char) * (ft_strlen_gnl(s) + 1));
-	if (!dup)
+	new = malloc(sizeof(char) * (ft_strlen_gnl(s) + 1));
+	if (!new)
 		return (NULL);
 	i = 0;
 	while (s && s[i])
 	{
-		dup[i] = s[i];
+		new[i] = s[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	new[i] = '\0';
+	return (new);
 }
 
 char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
