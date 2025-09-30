@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/15 19:05:05 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:20:16 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ static void	choose_sort(t_stack *a, t_stack *b)
 			error_exit();
 }
 
+static void	ft_check_stack(t_stack *a, t_stack *b)
+{
+	if (b)
+		free(b);
+	if (a)
+		free(a);
+	error_exit();
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -43,16 +52,17 @@ int	main(int ac, char **av)
 	need_free = 0;
 	splited = split_args(ac, av, &need_free);
 	if (!splited)
-		error_exit();
+		return (0);
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	if (!a || !b)
-		error_exit();
-	add_stack(splited, a);
+		ft_check_stack(a, b);
+	if (add_stack(splited, a))
+		return (list_clear(&a->top), free(a), free(b), 1);
 	if (check_sort_list(a))
 		choose_sort(a, b);
 	list_clear(&a->top);
 	if (need_free)
-		ft_free_split(splited);
+		ft_free_sp(splited);
 	return (free(a), free(b), 0);
 }

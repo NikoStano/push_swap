@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/29 01:14:31 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/30 16:31:22 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT		=	libft/
 LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER)
+CFLAGS		=	-Wall -Werror -Wextra -I$(HEADER) -ggdb
 COMPILE		=	$(CC) $(CFLAGS)
 RM			=	rm -rf
 # CFLAGS 		+=	-fsanitize=address -ggdb

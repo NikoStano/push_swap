@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/28 22:24:44 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:30:28 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,52 @@ t_stack	*copy_stack(t_stack *a)
 	return (st);
 }
 
-void	add_stack(char **splited, t_stack *st)
+static int	exist_in_stack(t_stack *st, int value)
+{
+	t_list	*tmp;
+
+	tmp = st->top;
+	while (tmp)
+	{
+		if (tmp->value == value)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	ft_valid_check(char **splited, int i, t_stack *st, int *value)
+{
+	if (splited[i][0] == '\0')
+	{
+		ft_free_sp(splited);
+		return (0);
+	}
+	if (!is_valid_int(splited[i], value))
+		return (0);
+	if (exist_in_stack(st, *value))
+		return (0);
+	return (1);
+}
+
+int	add_stack(char **splited, t_stack *st)
 {
 	int		i;
 	t_list	*new;
-	long	value;
+	int		value;
 
 	value = 0;
 	stack_init(st);
-	i = 0;
-	while (splited[i])
+	i = -1;
+	while (splited[++i])
 	{
-		if (splited[i][0] == '\0')
-			error_exit();
-		if (!is_valid_int(splited[i], &value))
-			error_exit();
-		if (exist_in_stack(st, (int)value))
-			error_exit();
-		new = list_new((int)value);
+		if (!ft_valid_check(splited, i, st, &value))
+			return (write(2, "Error\n", 6), 1);
+		new = list_new(value);
 		if (!new)
 			error_exit();
 		ft_lstadd_back(&st->top, new);
 		st->size++;
-		i++;
 	}
+	return (0);
 }

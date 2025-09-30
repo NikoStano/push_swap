@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:18:27 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/28 20:38:04 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:53:38 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,6 @@ int				ft_print_hex(unsigned int hex, char c);
 unsigned int	ft_atoi_base(const char *str, const char *base);
 int				ft_isspace(int c);
 long			ft_strtol(const char *nptr, char **endptr, int base);
-void			ft_free_split(char **sp);
+void			ft_free_sp(char **sp);
 
 #endif

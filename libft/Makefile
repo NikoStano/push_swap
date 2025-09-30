@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 16:35:06 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/28 20:39:36 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/09/30 16:54:00 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ SRCS		=	ft_atoi.c \
 				ft_print_hex.c \
 				ft_print_ptr.c \
 				ft_printf.c \
-				ft_free_split.c \
+				ft_free_sp.c \
  				get_next_line.c \
  				get_next_line_utils.c
 DIR_OBJ		=	obj/

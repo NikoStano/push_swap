@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/29 01:14:10 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:46:39 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,24 @@ int	check_sort_list(t_stack *st)
 	return (free(sorted), 0);
 }
 
-int	exist_in_stack(t_stack *st, int value)
+int	ft_is_int(char **str)
 {
-	t_list	*tmp;
+	int	i;
+	int	j;
 
-	tmp = st->top;
-	while (tmp)
+	i = 0;
+	while (str[i])
 	{
-		if (tmp->value == value)
-			return (1);
-		tmp = tmp->next;
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] < 48 || str[i][j] > 57)
+				return (0);
+			j++;
+		}
+		i++;
 	}
-	return (0);
+	return (1);
 }
 
 char	**split_args(int ac, char **av, int *need_free)
@@ -62,14 +68,20 @@ char	**split_args(int ac, char **av, int *need_free)
 	char	**split;
 
 	*need_free = 0;
-	if (ac < 2)
-		return (NULL);
 	if (ac == 2)
 	{
 		split = ft_split(av[1], ' ');
-		if (!split || !split[0])
+		if (!split || !split[0] || !split[1])
 		{
-			ft_free_split(split);
+			if (!ft_is_int(split))
+				write(1, "Error\n", 6);
+			ft_free_sp(split);
+			return (NULL);
+		}
+		if (!ft_is_int(split))
+		{
+			write(1, "Error\n", 6);
+			ft_free_sp(split);
 			return (NULL);
 		}
 		*need_free = 1;
@@ -78,7 +90,7 @@ char	**split_args(int ac, char **av, int *need_free)
 	return (av + 1);
 }
 
-int	is_valid_int(const char *s, long *out)
+int	is_valid_int(const char *s, int *value)
 {
 	char	*end;
 	long	v;
@@ -90,6 +102,6 @@ int	is_valid_int(const char *s, long *out)
 		return (0);
 	if (v < INT_MIN || v > INT_MAX)
 		return (0);
-	*out = v;
+	*value = v;
 	return (1);
 }
