@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/10/04 20:05:07 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/10/04 21:46:50 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS) $(LIBFT_A)
 	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME)
-	@echo "Linked into executable :\npush_swap\n$(GREEN)$(NAME)$(NO_COLOR)"
-	@echo "$(GREEN)>>> Use ./push_swap <numbers to sort> <<<$(NO_COLOR)"
+	@echo "$(GREEN)$(NAME)$(NO_COLOR) created successfully.\n"
+	@echo "$(GREEN)>>> Use ./push_swap <numbers to sort> <<<\n$(NO_COLOR)"
 
 $(LIBFT_A): $(LIBFT)*.c $(LIBFT)*.h $(LIBFT)Makefile
 	@$(MAKE) -s -C $(LIBFT) all

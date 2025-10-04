@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:59:57 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:23:13 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_valid_int(const char *s, int *value)
 	i = 0;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
-	if (ft_isdigit(s[i]))
+	if (!ft_isdigit(s[i]))
 		return (0);
 	v = ft_strtol(s, &end, 10);
 	if (*end != '\0')

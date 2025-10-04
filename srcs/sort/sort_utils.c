@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/29 01:09:43 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:33:08 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,10 @@ void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted)
 	int	pos;
 	int	k;
 
-	k = 0;
 	pos = find_max_pos(b, sorted);
-	if (pos > b->size / 2)
+	k = b->size - pos;
+	if (pos > k)
 	{
-		k = b->size - pos;
 		while (k-- > 0)
 			op_rrb(b);
 	}
