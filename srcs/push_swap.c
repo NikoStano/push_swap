@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:44:22 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:01:48 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	stack_init(t_stack *st)
 	st->chunk_size = 0;
 	st->chunk = 0;
 	st->pushed = 0;
+}
+
+void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
 
 static void	choose_sort(t_stack *a, t_stack *b)

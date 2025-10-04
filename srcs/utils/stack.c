@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:31:33 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:59:57 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,16 @@ static int	is_valid_int(const char *s, int *value)
 {
 	char	*end;
 	long	v;
+	int		i;
 
 	if (!s || !*s)
+		return (0);
+	if ((s[0] == '-' || s[0] == '+') && !s[1])
+		return (0);
+	i = 0;
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	if (ft_isdigit(s[i]))
 		return (0);
 	v = ft_strtol(s, &end, 10);
 	if (*end != '\0')
@@ -70,10 +78,17 @@ int	add_stack(char **splited, t_stack *st)
 	while (splited[++i])
 	{
 		if (!is_valid_int(splited[i], &value) || is_duplicate(st, value))
-			return (write(2, "Error\n", 6), 1);
+		{
+			list_clear(&st->top);
+			write(2, "Error\n", 6);
+			return (1);
+		}
 		new = list_new(value);
 		if (!new)
+		{
+			list_clear(&st->top);
 			error_exit();
+		}
 		ft_lstadd_back(&st->top, new);
 		st->size++;
 	}

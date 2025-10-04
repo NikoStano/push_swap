@@ -6,17 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:31:42 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:09:13 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
 
 void	bubble_sort(t_stack *st)
 {
@@ -70,6 +64,20 @@ t_stack	*sorted_stack(t_stack *a)
 	return (sorted);
 }
 
+static int	is_only_spaces(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char	**split_args(int ac, char **av, int *need_free)
 {
 	char	**split;
@@ -77,12 +85,18 @@ char	**split_args(int ac, char **av, int *need_free)
 	*need_free = 0;
 	if (ac == 2)
 	{
+		if (!av[1] || !av[1][0] || is_only_spaces(av[1]))
+		{
+			write(2, "Error\n", 6);
+			return (NULL);
+		}
 		split = ft_split(av[1], ' ');
 		if (!split || !split[0])
 		{
 			if (split)
 				ft_free_sp(split);
-			return (write(2, "Error\n", 6), NULL);
+			write(2, "Error\n", 6);
+			return (NULL);
 		}
 		*need_free = 1;
 		return (split);
