@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:17:54 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 23:12:09 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,34 @@ static void	choose_sort(t_stack *a, t_stack *b)
 			error_exit();
 }
 
-static void	ft_check_stack(t_stack *a, t_stack *b)
+static void	clenup_up(t_stack *a, t_stack *b, char **splited, int need_free)
 {
+	if (a)
+	{
+		list_clear(&a->top);
+		free(a);
+	}
 	if (b)
 		free(b);
-	if (a)
-		free(a);
-	error_exit();
+	if (need_free && splited)
+		ft_free_sp(splited);
+}
+
+static int	init_stacks(t_stack **a, t_stack **b, char **splited)
+{
+	*a = malloc(sizeof(t_stack));
+	*b = malloc(sizeof(t_stack));
+	if (!*a || !*b)
+	{
+		if (*a)
+			free(*a);
+		if (*b)
+			free(*b);
+		return (1);
+	}
+	if (add_stack(splited, *a))
+		return (1);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -49,21 +70,15 @@ int	main(int ac, char **av)
 	need_free = 0;
 	splited = split_args(ac, av, &need_free);
 	if (!splited)
-		return (0);
-	a = malloc(sizeof(t_stack));
-	b = malloc(sizeof(t_stack));
-	if (!a || !b)
-		ft_check_stack(a, b);
-	if (add_stack(splited, a))
+		return (1);
+	if (init_stacks(&a, &b, splited))
 	{
 		if (need_free)
 			ft_free_sp(splited);
-		return (free(a), free(b), 1);
+		return (1);
 	}
 	if (!is_sorted(a))
 		choose_sort(a, b);
-	list_clear(&a->top);
-	if (need_free)
-		ft_free_sp(splited);
-	return (free(a), free(b), 0);
+	clenup_up(a, b, splited, need_free);
+	return (0);
 }
