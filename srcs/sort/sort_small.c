@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:22:38 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:28:37 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	sort_small(t_stack *a, t_stack *b)
 	if (a->size == 2)
 	{
 		if (a->top->value > a->top->next->value)
-			op_ra(a);
+			op_sa(a);
 	}
 	else if (a->size == 3)
 		sort_three(a);

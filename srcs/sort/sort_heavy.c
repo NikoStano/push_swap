@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:52:44 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:28:26 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	init_chunk(t_stack *a)
 {
 	if (a->size <= 100)
 		a->chunk_size = a->size / 5 + 1;
-	else if (a->size <= 250)
-		a->chunk_size = a->size / 8 + 1;
 	else
 		a->chunk_size = a->size / 9;
 	a->chunk = 0;
