@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 23:12:09 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 23:21:42 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	clenup_up(t_stack *a, t_stack *b, char **splited, int need_free)
 		ft_free_sp(splited);
 }
 
-static int	init_stacks(t_stack **a, t_stack **b, char **splited)
+static int	init_stacks(t_stack **a, t_stack **b)
 {
 	*a = malloc(sizeof(t_stack));
 	*b = malloc(sizeof(t_stack));
@@ -53,8 +53,6 @@ static int	init_stacks(t_stack **a, t_stack **b, char **splited)
 			free(*b);
 		return (1);
 	}
-	if (add_stack(splited, *a))
-		return (1);
 	return (0);
 }
 
@@ -71,12 +69,14 @@ int	main(int ac, char **av)
 	splited = split_args(ac, av, &need_free);
 	if (!splited)
 		return (1);
-	if (init_stacks(&a, &b, splited))
+	if (init_stacks(&a, &b))
 	{
 		if (need_free)
 			ft_free_sp(splited);
 		return (1);
 	}
+	if (add_stack(splited, a))
+		return (clenup_up(a, b, splited, need_free), 1);
 	if (!is_sorted(a))
 		choose_sort(a, b);
 	clenup_up(a, b, splited, need_free);
