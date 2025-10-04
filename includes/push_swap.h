@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/30 17:37:44 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:15:55 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
-# include <math.h>
 # include "../libft/libft.h"
 
 typedef struct s_stack

@@ -6,11 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/30 17:46:39 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:04:59 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 void	error_exit(void)
 {
@@ -43,6 +43,13 @@ int	check_sort_list(t_stack *st)
 	return (free(sorted), 0);
 }
 
+static int	ft_is_valid_char(char c, int i)
+{
+	if (i && (c == '-' || c == '+'))
+		return (1);
+	return (c >= '0' && c <= '9');
+}
+
 int	ft_is_int(char **str)
 {
 	int	i;
@@ -52,12 +59,16 @@ int	ft_is_int(char **str)
 	while (str[i])
 	{
 		j = 0;
+		if (!str[i][j])
+			return (0);
 		while (str[i][j])
 		{
-			if (str[i][j] < 48 || str[i][j] > 57)
+			if (!ft_is_valid_char(str[i][j], j == 0))
 				return (0);
 			j++;
 		}
+		if (j == 1 && (str[i][0] == '-' || str[i][0] == '+'))
+			return (0);
 		i++;
 	}
 	return (1);
@@ -70,20 +81,13 @@ char	**split_args(int ac, char **av, int *need_free)
 	*need_free = 0;
 	if (ac == 2)
 	{
+		if (!av[1] || !av[1][0])
+			return (NULL);
 		split = ft_split(av[1], ' ');
-		if (!split || !split[0] || !split[1])
-		{
-			if (!ft_is_int(split))
-				write(1, "Error\n", 6);
-			ft_free_sp(split);
-			return (NULL);
-		}
-		if (!ft_is_int(split))
-		{
-			write(1, "Error\n", 6);
-			ft_free_sp(split);
-			return (NULL);
-		}
+		if (!split)
+			return (write(2, "Error\n", 6), NULL);
+		if (!split[0])
+			return (ft_free_sp(split), NULL);
 		*need_free = 1;
 		return (split);
 	}

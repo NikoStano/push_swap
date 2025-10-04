@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/30 17:20:16 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 19:18:38 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 	int		need_free;
 
 	if (ac < 2)
-		error_exit();
+		return (0);
 	need_free = 0;
 	splited = split_args(ac, av, &need_free);
 	if (!splited)
@@ -58,7 +58,11 @@ int	main(int ac, char **av)
 	if (!a || !b)
 		ft_check_stack(a, b);
 	if (add_stack(splited, a))
-		return (list_clear(&a->top), free(a), free(b), 1);
+	{
+		if (need_free)
+			ft_free_sp(splited);
+		return (free(a), free(b), 1);
+	}
 	if (check_sort_list(a))
 		choose_sort(a, b);
 	list_clear(&a->top);

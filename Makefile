@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/30 16:31:22 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/10/04 20:05:07 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,8 @@ $(DIR_OBJ)%.o:			%.c
 
 norminette:
 	@echo "\$(BLUE)Norminette check :$(NO_COLOR)"
-# 	@python3 -m norminette
-	@norminette
+	@python3 -m norminette
+# 	@norminette
 
 clean:
 	@make clean -s -C $(LIBFT)
