@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:15:05 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:52:44 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ static void	init_chunk(t_stack *a)
 		a->chunk_size = a->size / 5 + 1;
 	else if (a->size <= 250)
 		a->chunk_size = a->size / 8 + 1;
-	else if (a->size <= 500)
-		a->chunk_size = a->size / 11 + 1;
 	else
-		a->chunk_size = a->size / 15 + 1;
+		a->chunk_size = a->size / 9;
 	a->chunk = 0;
 	a->pushed = 0;
 	a->index = 0;
@@ -55,7 +53,7 @@ static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)
 	mid = low + (a->chunk_size / 2);
 	op_pb(a, b);
 	a->pushed++;
-	if (b->size > 1 && idx < mid)
+	if (b->size > 1 && idx <= mid)
 		op_rb(b);
 }
 

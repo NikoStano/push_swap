@@ -200,7 +200,7 @@ echo -e "${BLUE}[6/6] Performance Tests${NC}"
 echo "─────────────────────────────────────────"
 
 # 100 numbers test
-echo -n "Testing 100 numbers (avg of 10 runs) ... "
+echo -e "${BLUE}Testing 100 numbers${NC} (avg of 10 runs) :"
 TOTAL_OPS=0
 for i in {1..10}; do
     NUMS=$(shuf -i 0-999 -n 100 | tr '\n' ' ')
@@ -221,7 +221,7 @@ else
 fi
 
 # Test de stress
-echo -n "Stress Test: 100 numbers (10 runs) ... "
+echo -e "${BLUE}Stress Test: 100 numbers${NC} (10 runs) :"
 for i in {1..10}; do
     ARG=$(shuf -i 0-99 -n 100 | tr '\n' ' ')
     COUNT=$(./push_swap $ARG | wc -l)
@@ -229,7 +229,7 @@ for i in {1..10}; do
 done | awk '{sum+=$3; count++} END {print "Average:", sum/count}'
 
 # 500 numbers test
-echo -n "Testing 500 numbers (avg of 10 runs) ... "
+echo -e "${BLUE}Testing 500 numbers${NC} (avg of 10 runs) :"
 TOTAL_OPS=0
 for i in {1..10}; do
     NUMS=$(shuf -i 0-9999 -n 500 | tr '\n' ' ')
@@ -250,12 +250,19 @@ else
 fi
 
 # Test de stress
-echo -n "Stress Test: 500 numbers (10 runs) ... "
+echo -e "${BLUE}Stress Test: 500 numbers${NC} (10 runs) :"
 for i in {1..10}; do
     ARG=$(shuf -i 0-499 -n 500 | tr '\n' ' ')
     COUNT=$(./push_swap $ARG | wc -l)
     echo "Run $i: $COUNT operations"
 done | awk '{sum+=$3; count++} END {print "Average:", sum/count}'
+
+# Large test
+echo -e "${BLUE}Large Test: 500 numbers${NC} (5 runs) :"
+for i in {1..5}; do
+    ARG=$(shuf -i 0-4999 -n 500 | tr '\n' ' ')
+    ./push_swap $ARG | wc -l
+done | awk '{sum+=$1; count++} END {print "Test3 :", sum/count}'
 
 echo ""
 

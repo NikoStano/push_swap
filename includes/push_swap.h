@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:26:28 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:50:50 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int		copy_list(t_stack *dst, t_stack *src);
 // static int	is_duplicate(t_stack *st, int value);
 int		is_sorted(t_stack *st);
 int		add_stack(char **av, t_stack *st);
-
 
 /* utils.c 5 */
 void	bubble_sort(t_stack *st);
