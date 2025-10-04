@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 19:15:55 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:33:16 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int		add_stack(char **av, t_stack *st);
 
 /* utils.c 5 */
 void	error_exit(void);
-int		check_sort_list(t_stack *st);
+t_stack	*sorted_stack(t_stack *a);
+int		is_sorted(t_stack *st);
 char	**split_args(int ac, char **av, int *need_free);
-int		is_valid_int(const char *s, int *value);
 
 void	stack_init(t_stack *st);
 

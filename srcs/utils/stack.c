@@ -6,54 +6,29 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:04:41 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:31:33 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	bubble_sort(t_stack *st)
+static int	is_valid_int(const char *s, int *value)
 {
-	int		i;
-	int		j;
-	int		tmp;
-	t_list	*first;
+	char	*end;
+	long	v;
 
-	i = 0;
-	first = st->top;
-	while (i < st->size)
-	{
-		j = 0;
-		st->top = first;
-		while (j < st->size - i - 1)
-		{
-			if (st->top->value < st->top->next->value)
-			{
-				tmp = st->top->value;
-				st->top->value = st->top->next->value;
-				st->top->next->value = tmp;
-			}
-			j++;
-			st->top = st->top->next;
-		}
-		i++;
-	}
+	if (!s || !*s)
+		return (0);
+	v = ft_strtol(s, &end, 10);
+	if (*end != '\0')
+		return (0);
+	if (v < INT_MIN || v > INT_MAX)
+		return (0);
+	*value = v;
+	return (1);
 }
 
-t_stack	*copy_stack(t_stack *a)
-{
-	t_stack	*st;
-
-	st = malloc(sizeof(t_stack));
-	if (!st)
-		return (NULL);
-	stack_init(st);
-	if (copy_list(st, a))
-		return (free(st), NULL);
-	return (st);
-}
-
-static int	exist_in_stack(t_stack *st, int value)
+static int	is_duplicate(t_stack *st, int value)
 {
 	t_list	*tmp;
 
@@ -67,17 +42,19 @@ static int	exist_in_stack(t_stack *st, int value)
 	return (0);
 }
 
-int	ft_valid_check(char **splited, int i, t_stack *st, int *value)
+int	is_sorted(t_stack *st)
 {
-	if (splited[i][0] == '\0')
+	t_list	*curr;
+
+	if (!st || !st->top)
+		return (1);
+	curr = st->top;
+	while (curr->next)
 	{
-		ft_free_sp(splited);
-		return (0);
+		if (curr->value > curr->next->value)
+			return (0);
+		curr = curr->next;
 	}
-	if (!is_valid_int(splited[i], value))
-		return (0);
-	if (exist_in_stack(st, *value))
-		return (0);
 	return (1);
 }
 
@@ -92,7 +69,7 @@ int	add_stack(char **splited, t_stack *st)
 	i = -1;
 	while (splited[++i])
 	{
-		if (!ft_valid_check(splited, i, st, &value))
+		if (!is_valid_int(splited[i], &value) || is_duplicate(st, value))
 			return (write(2, "Error\n", 6), 1);
 		new = list_new(value);
 		if (!new)

@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 19:18:38 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 20:33:30 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 			ft_free_sp(splited);
 		return (free(a), free(b), 1);
 	}
-	if (check_sort_list(a))
+	if (is_sorted(a))
 		choose_sort(a, b);
 	list_clear(&a->top);
 	if (need_free)
