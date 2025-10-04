@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 21:48:21 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:15:05 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_chunk(t_stack *a)
 	else if (a->size <= 250)
 		a->chunk_size = a->size / 8 + 1;
 	else if (a->size <= 500)
-		a->chunk_size = a->size / 9 + 1;
+		a->chunk_size = a->size / 11 + 1;
 	else
 		a->chunk_size = a->size / 15 + 1;
 	a->chunk = 0;
@@ -29,39 +29,33 @@ static void	init_chunk(t_stack *a)
 
 static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high)
 {
-	t_stack	*cur;
+	t_list	*cur;
 	int		idx;
-	int		i;
-	t_list	*first;
+	int		pos;
 
-	i = 0;
-	cur = copy_stack(a);
-	if (!cur)
-		error_exit();
-	first = cur->top;
-	while (cur->top)
+	cur = a->top;
+	pos = 0;
+	while (cur)
 	{
-		idx = get_indexed(cur->top, sorted);
+		idx = get_indexed(cur, sorted);
 		if (idx >= low && idx <= high)
-		{
-			list_clear(&first);
-			return (free(cur), i);
-		}
-		cur->top = cur->top->next;
-		i++;
+			return (pos);
+		cur = cur->next;
+		pos++;
 	}
-	list_clear(&first);
-	return (free(cur), -1);
+	return (-1);
 }
 
 static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low)
 {
 	int	idx;
+	int	mid;
 
 	idx = get_indexed(a->top, sorted);
+	mid = low + (a->chunk_size / 2);
 	op_pb(a, b);
 	a->pushed++;
-	if (b->size > 1 && idx <= low + (a->chunk_size / 2))
+	if (b->size > 1 && idx < mid)
 		op_rb(b);
 }
 

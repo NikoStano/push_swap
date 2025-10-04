@@ -6,13 +6,13 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/29 01:09:48 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:22:38 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	equal_to_three(t_stack *st)
+static void	sort_three(t_stack *st)
 {
 	int	one;
 	int	two;
@@ -65,11 +65,11 @@ static void	sort_ff(t_stack *a, t_stack *b)
 	op_pb(a, b);
 }
 
-static void	less_or_five(t_stack *a, t_stack *b)
+static void	sort_four(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
 		sort_ff(a, b);
-	equal_to_three(a);
+	sort_three(a);
 	while (b->size > 0)
 		op_pa(a, b);
 }
@@ -82,7 +82,7 @@ void	sort_small(t_stack *a, t_stack *b)
 			op_ra(a);
 	}
 	else if (a->size == 3)
-		equal_to_three(a);
+		sort_three(a);
 	else if (a->size <= 5)
-		less_or_five(a, b);
+		sort_four(a, b);
 }

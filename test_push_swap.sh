@@ -200,14 +200,14 @@ echo -e "${BLUE}[6/6] Performance Tests${NC}"
 echo "─────────────────────────────────────────"
 
 # 100 numbers test
-echo -n "Testing 100 numbers (avg of 3 runs) ... "
+echo -n "Testing 100 numbers (avg of 10 runs) ... "
 TOTAL_OPS=0
-for i in {1..3}; do
+for i in {1..10}; do
     NUMS=$(shuf -i 0-999 -n 100 | tr '\n' ' ')
     OPS=$(./push_swap $NUMS 2>/dev/null | wc -l)
     TOTAL_OPS=$((TOTAL_OPS + OPS))
 done
-AVG_OPS=$((TOTAL_OPS / 3))
+AVG_OPS=$((TOTAL_OPS / 10))
 
 if [ $AVG_OPS -lt 700 ]; then
     echo -e "${GREEN}✓ EXCELLENT (${AVG_OPS} ops < 700)${NC}"
@@ -220,15 +220,23 @@ else
     ((TESTS_FAILED++))
 fi
 
+# Test de stress
+echo -n "Stress Test: 100 numbers (10 runs) ... "
+for i in {1..10}; do
+    ARG=$(shuf -i 0-99 -n 100 | tr '\n' ' ')
+    COUNT=$(./push_swap $ARG | wc -l)
+    echo "Run $i: $COUNT operations"
+done | awk '{sum+=$3; count++} END {print "Average:", sum/count}'
+
 # 500 numbers test
-echo -n "Testing 500 numbers (avg of 3 runs) ... "
+echo -n "Testing 500 numbers (avg of 10 runs) ... "
 TOTAL_OPS=0
-for i in {1..3}; do
+for i in {1..10}; do
     NUMS=$(shuf -i 0-9999 -n 500 | tr '\n' ' ')
     OPS=$(./push_swap $NUMS 2>/dev/null | wc -l)
     TOTAL_OPS=$((TOTAL_OPS + OPS))
 done
-AVG_OPS=$((TOTAL_OPS / 3))
+AVG_OPS=$((TOTAL_OPS / 10))
 
 if [ $AVG_OPS -lt 5500 ]; then
     echo -e "${GREEN}✓ EXCELLENT (${AVG_OPS} ops < 5500)${NC}"
@@ -240,6 +248,14 @@ else
     echo -e "${RED}✗ POOR (${AVG_OPS} ops ≥ 7000)${NC}"
     ((TESTS_FAILED++))
 fi
+
+# Test de stress
+echo -n "Stress Test: 500 numbers (10 runs) ... "
+for i in {1..10}; do
+    ARG=$(shuf -i 0-499 -n 500 | tr '\n' ' ')
+    COUNT=$(./push_swap $ARG | wc -l)
+    echo "Run $i: $COUNT operations"
+done | awk '{sum+=$3; count++} END {print "Average:", sum/count}'
 
 echo ""
 

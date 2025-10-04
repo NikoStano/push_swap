@@ -6,20 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 21:01:48 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:17:54 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	stack_init(t_stack *st)
-{
-	st->top = NULL;
-	st->size = 0;
-	st->chunk_size = 0;
-	st->chunk = 0;
-	st->pushed = 0;
-}
 
 void	error_exit(void)
 {

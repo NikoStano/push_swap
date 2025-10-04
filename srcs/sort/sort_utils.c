@@ -6,26 +6,37 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 21:33:08 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:18:02 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
+void	stack_init(t_stack *st)
+{
+	st->top = NULL;
+	st->size = 0;
+	st->chunk_size = 0;
+	st->chunk = 0;
+	st->pushed = 0;
+}
+
 void	rotate_up(t_stack *st, int size)
 {
-	int	i;
+	int	rev_size;
 
-	i = st->size - size;
-	if ((st->size / 2) < size)
-	{
-		while (i-- > 0)
-			op_rra(st);
-	}
-	else
+	if (size == 0)
+		return ;
+	rev_size = st->size - size;
+	if (size <= rev_size)
 	{
 		while (size-- > 0)
 			op_ra(st);
+	}
+	else
+	{
+		while (rev_size-- > 0)
+			op_rra(st);
 	}
 }
 
@@ -77,19 +88,19 @@ static int	find_max_pos(t_stack *b, t_stack *sorted)
 void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted)
 {
 	int	pos;
-	int	k;
+	int	rev_pos;
 
 	pos = find_max_pos(b, sorted);
-	k = b->size - pos;
-	if (pos > k)
-	{
-		while (k-- > 0)
-			op_rrb(b);
-	}
-	else
+	rev_pos = b->size - pos;
+	if (pos <= rev_pos)
 	{
 		while (pos-- > 0)
 			op_rb(b);
+	}
+	else
+	{
+		while (rev_pos-- > 0)
+			op_rrb(b);
 	}
 	op_pa(a, b);
 }

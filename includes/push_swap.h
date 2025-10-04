@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 20:33:16 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 22:26:28 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,23 @@ void	op_rra(t_stack *a);
 void	op_rrb(t_stack *b);
 
 /* sort_heavy.c 5 */
+// static void	init_chunk(t_stack *a);
+// static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high);
+// static void	last_back(t_stack *a, t_stack *b, t_stack *sorted, int low);
+// static void	push_chunks(t_stack *a, t_stack *b, t_stack *sorted);
 int		sort_heavy(t_stack *a, t_stack *b);
 
 /* sort_small.c 4 */
+// static void	equal_to_three(t_stack *st);
+// static void	sort_ff(t_stack *a, t_stack *b);
+// static void	sort_four(t_stack *a, t_stack *b);
 void	sort_small(t_stack *a, t_stack *b);
 
-/* sort_utils.c 4 */
+/* sort_utils.c 5 */
+void	stack_init(t_stack *st);
 void	rotate_up(t_stack *st, int size);
 int		get_indexed(t_list *a, t_stack *sorted);
+// static int	find_max_pos(t_stack *b, t_stack *sorted);
 void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted);
 
 /* list_utils.c 4 */
@@ -70,17 +79,23 @@ void	list_clear(t_list **top);
 int		copy_list(t_stack *dst, t_stack *src);
 // void	print_stack(t_stack *st);
 
-/* stack.c 3 */
-void	bubble_sort(t_stack *st);
-t_stack	*copy_stack(t_stack *a);
+/* stack.c 5 */
+// static int	is_valid_int(char *s, int *value);
+// static int	is_duplicate(t_stack *st, int value);
+int		is_sorted(t_stack *st);
 int		add_stack(char **av, t_stack *st);
 
+
 /* utils.c 5 */
-void	error_exit(void);
+void	bubble_sort(t_stack *st);
+t_stack	*copy_stack(t_stack *a);
 t_stack	*sorted_stack(t_stack *a);
-int		is_sorted(t_stack *st);
+// static int	is_only_spaces(const char *str);
 char	**split_args(int ac, char **av, int *need_free);
 
-void	stack_init(t_stack *st);
+/* push_swap.c 4*/
+void	error_exit(void);
+// static void	choose_sort(t_stack *a, t_stack *b);
+// static void	ft_check_stack(t_stack *a, t_stack *b);
 
 #endif
