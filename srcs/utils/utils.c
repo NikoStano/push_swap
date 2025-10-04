@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 08:05:34 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 21:09:13 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 23:39:55 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	bubble_sort(t_stack *st)
 		st->top = first;
 		while (j < st->size - i - 1)
 		{
-			if (st->top->value < st->top->next->value)
+			if (st->top->value > st->top->next->value)
 			{
 				tmp = st->top->value;
 				st->top->value = st->top->next->value;
@@ -38,6 +38,7 @@ void	bubble_sort(t_stack *st)
 		}
 		i++;
 	}
+	st->top = first;
 }
 
 t_stack	*copy_stack(t_stack *a)

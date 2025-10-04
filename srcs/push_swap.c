@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:03:08 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 23:21:42 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/04 23:38:38 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	choose_sort(t_stack *a, t_stack *b)
 			error_exit();
 }
 
-static void	clenup_up(t_stack *a, t_stack *b, char **splited, int need_free)
+static void	clean_up(t_stack *a, t_stack *b, char **splited, int need_free)
 {
 	if (a)
 	{
@@ -76,9 +76,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (add_stack(splited, a))
-		return (clenup_up(a, b, splited, need_free), 1);
+		return (clean_up(a, b, splited, need_free), 1);
 	if (!is_sorted(a))
 		choose_sort(a, b);
-	clenup_up(a, b, splited, need_free);
+	clean_up(a, b, splited, need_free);
 	return (0);
 }
