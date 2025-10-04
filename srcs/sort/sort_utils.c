@@ -6,20 +6,11 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 22:49:31 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:06:35 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-void	stack_init(t_stack *st)
-{
-	st->top = NULL;
-	st->size = 0;
-	st->chunk_size = 0;
-	st->chunk = 0;
-	st->pushed = 0;
-}
 
 void	rotate_up(t_stack *st, int size)
 {

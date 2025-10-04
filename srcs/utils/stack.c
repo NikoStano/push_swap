@@ -6,11 +6,20 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/04 21:23:13 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:08:07 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+void	stack_init(t_stack *st)
+{
+	st->top = NULL;
+	st->size = 0;
+	st->chunk_size = 0;
+	st->chunk = 0;
+	st->pushed = 0;
+}
 
 static int	is_valid_int(const char *s, int *value)
 {
