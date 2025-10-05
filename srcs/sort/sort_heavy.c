@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 03:37:19 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:28:26 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,14 @@ static int	find_chunk_pos(t_stack *a, t_stack *sorted, int low, int high)
 	t_list	*cur;
 	int		idx;
 	int		pos;
-	int		size;
 
 	cur = a->top;
 	pos = 0;
-	size = a->size;
 	while (cur)
 	{
 		idx = get_indexed(cur, sorted);
 		if (idx >= low && idx <= high)
-		{
-			if (pos <= size / 2)
-				return (pos);
-			else
-				return (pos - size);
-		}
+			return (pos);
 		cur = cur->next;
 		pos++;
 	}
