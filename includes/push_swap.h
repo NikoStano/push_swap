@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:01:07 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 01:14:45 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 19:06:34 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,23 @@ int		sort_heavy(t_stack *a, t_stack *b);
 void	sort_small(t_stack *a, t_stack *b);
 
 /* sort_utils.c 5 */
-// static void	stack_init(t_stack *st);
 void	rotate_up(t_stack *st, int size);
 int		get_indexed(t_list *a, t_stack *sorted);
 // static int	find_max_pos(t_stack *b, t_stack *sorted);
 void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted);
+void	push_up(t_stack *st, int value);
 
-/* common.c 5 */
+/* common.c 3 */
 void	error_exit(void);
 int		init_stacks(t_stack **a, t_stack **b);
 void	clean_up(t_stack *a, t_stack *b, char **splited, int need_free);
 
-/* list_utils.c 4 */
-t_list	*list_new(int val);
-void	list_delone(t_list *top);
-void	list_clear(t_list **top);
+/* list_utils.c 2 */
+void	ft_del(void *content);
 int		copy_list(t_stack *dst, t_stack *src);
 // void	print_stack(t_stack *st);
 
-/* stack.c 4 */
+/* stack.c 5 */
 void	stack_init(t_stack *st);
 // static int	is_valid_int(char *s, int *value);
 // static int	is_duplicate(t_stack *st, int value);
@@ -98,7 +96,7 @@ t_stack	*sorted_stack(t_stack *a);
 // static int	is_only_spaces(const char *str);
 char	**split_args(int ac, char **av, int *need_free);
 
-/* push_swap.c 4*/
+/* push_swap.c 2 */
 // static void	choose_sort(t_stack *a, t_stack *b);
 
 #endif

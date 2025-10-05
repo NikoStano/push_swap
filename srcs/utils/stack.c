@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:28:25 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 01:08:07 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 19:09:22 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	is_duplicate(t_stack *st, int value)
 	tmp = st->top;
 	while (tmp)
 	{
-		if (tmp->value == value)
+		if (tmp->value == (void *)(long)value)
 			return (1);
 		tmp = tmp->next;
 	}
@@ -88,14 +88,14 @@ int	add_stack(char **splited, t_stack *st)
 	{
 		if (!is_valid_int(splited[i], &value) || is_duplicate(st, value))
 		{
-			list_clear(&st->top);
+			ft_lstclear(&st->top, ft_del);
 			write(2, "Error\n", 6);
 			return (1);
 		}
-		new = list_new(value);
+		new = ft_lstnew((void *)(long)value);
 		if (!new)
 		{
-			list_clear(&st->top);
+			ft_lstclear(&st->top, ft_del);
 			error_exit();
 		}
 		ft_lstadd_back(&st->top, new);

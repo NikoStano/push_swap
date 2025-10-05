@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:18:16 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/09/10 20:05:16 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 19:13:50 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	stack_push(t_stack *st, int value)
 	node = malloc(sizeof(t_list));
 	if (!node)
 		error_exit();
-	node->value = value;
+	node->value = (void *)(long)value;
 	node->next = st->top;
 	st->top = node;
 	st->size++;
@@ -33,7 +33,7 @@ int	stack_pop(t_stack *st)
 	if (st->size == 0)
 		error_exit();
 	tmp = st->top;
-	val = tmp->value;
+	val = (int)(long)tmp->value;
 	st->top = tmp->next;
 	free(tmp);
 	st->size--;

@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/10/05 01:20:38 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/10/05 20:07:05 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,8 +78,8 @@ $(DIR_OBJ)%.o:			%.c
 
 norminette:
 	@echo "\$(BLUE)Norminette check :$(NO_COLOR)"
-	@python3 -m norminette
-# 	@norminette
+# 	@python3 -m norminette
+	@norminette
 
 clean:
 	@make clean -s -C $(LIBFT)
@@ -88,7 +88,8 @@ clean:
 
 fclean:			clean
 	@make fclean -s -C $(LIBFT)
-	@$(RM) $(NAME) $(BONUS_NAME)
+	@$(RM) $(NAME)
+	@$(RM) $(BONUS_NAME)
 	@echo "$(GREEN)Executable files removed.$(NO_COLOR)"
 
 re:				fclean all
