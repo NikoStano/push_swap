@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 16:19:30 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 19:07:08 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:06:35 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,4 @@ void	push_back_to_a(t_stack *a, t_stack *b, t_stack *sorted)
 			op_rrb(b);
 	}
 	op_pa(a, b);
-}
-
-void	push_up(t_stack *st, int value)
-{
-	t_list	*new;
-
-	new = ft_lstnew((void *)(long)value);
-	if (!new)
-		return ;
-	ft_lstadd_front(&st->top, new);
-	st->size++;
 }

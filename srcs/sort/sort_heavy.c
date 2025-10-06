@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:40:37 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 19:10:22 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:28:26 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	sort_heavy(t_stack *a, t_stack *b)
 	}
 	while (b->size > 0)
 		push_back_to_a(a, b, sorted);
-	ft_lstclear(&sorted->top, ft_del);
+	list_clear(&sorted->top);
 	free(sorted);
 	return (0);
 }

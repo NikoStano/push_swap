@@ -6,7 +6,7 @@
 /*   By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 08:05:42 by nistanoj          #+#    #+#             */
-/*   Updated: 2025/10/05 19:16:54 by nistanoj         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:28:37 by nistanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	sort_three(t_stack *st)
 	int	two;
 	int	thr;
 
-	one = (int)(long)st->top->value;
-	two = (int)(long)st->top->next->value;
-	thr = (int)(long)st->top->next->next->value;
+	one = st->top->value;
+	two = st->top->next->value;
+	thr = st->top->next->next->value;
 	if (one > two && two < thr && one < thr)
 		op_sa(st);
 	else if (one > two && two > thr)
@@ -47,15 +47,15 @@ static void	sort_ff(t_stack *a, t_stack *b)
 	t_list	*first;
 
 	i = 0;
-	tmp = (int)(long)a->top->value;
+	tmp = a->top->value;
 	pos = 0;
 	first = a->top;
 	while (a->top)
 	{
-		if (a->top->value < (void *)(long)tmp)
+		if (a->top->value < tmp)
 		{
 			i = pos;
-			tmp = (int)(long)a->top->value;
+			tmp = a->top->value;
 		}
 		a->top = a->top->next;
 		pos++;
