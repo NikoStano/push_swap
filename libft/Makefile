@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 16:35:06 by nistanoj          #+#    #+#              #
-#    Updated: 2025/09/30 16:54:00 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/10/07 22:04:39 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,10 +80,11 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 	@ar rcs $@ $^
-	@echo "\033[1;32m$(NAME)\033[0m created successfully."
+	@echo "\033[0;32m[ ✓ ] Add $(NAME) to compilation.\033[0m "
 
 $(DIR_OBJ)%.o:		%.c
 	@mkdir -p $(DIR_OBJ)
+	@echo "\033[0;33m[ ℹ ] Compiling $< ...\033[0m"
 	@$(COMPILE) -o $@ -c $<
 	
 clean:
@@ -92,7 +93,8 @@ clean:
 
 fclean:		clean
 	@$(RM) $(NAME)
-	@echo "\033[1;32m$(NAME)\033[0m deleted."
+	@echo "\033[0;36m[ ℹ ] Removing lib $(NAME)...\033[0m"
+
 
 re:			fclean all
 

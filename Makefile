@@ -6,7 +6,7 @@
 #    By: nistanoj <nistanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/31 07:51:02 by nistanoj          #+#    #+#              #
-#    Updated: 2025/10/05 01:20:38 by nistanoj         ###   ########.fr        #
+#    Updated: 2025/10/07 22:05:12 by nistanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,24 +49,30 @@ COMMON_OBJS	=	$(COMMON_SRCS:%.c=$(DIR_OBJ)%.o)
 GLOBAL_OBJS	=	$(GLOBAL_SRCS:%.c=$(DIR_OBJ)%.o)
 BONUS_OBJS	=	$(BONUS_SRCS:%.c=$(DIR_OBJ)%.o)
 
-GREEN		=	\033[1;32m
-BLUE		=	\033[1;34m
-YELLOW		=	\033[1;33m
-NO_COLOR	=	\033[0m
+GREEN		=	\033[0;32m
+L_GREEN		=	\033[1;32m
+BLUE		=	\033[0;34m
+YELLOW		=	\033[0;33m
+RED			=	\033[0;31m
+CYAN		=	\033[0;36m
+L_GREEN		=	\033[0;32m
+RESET		=	\033[0m
 
 all:			$(NAME)
 
 $(NAME):		$(COMMON_OBJS) $(GLOBAL_OBJS) $(LIBFT_A)
+	@echo "$(CYAN)[ → ] Linking $(BOLD)$(NAME)...$(RESET)"
 	@$(COMPILE) $(COMMON_OBJS) $(GLOBAL_OBJS) -L$(LIBFT) -lft -o $(NAME)
-	@echo "$(GREEN)$(NAME)$(NO_COLOR) created successfully.\n"
-	@echo "$(GREEN)>>> Use ./push_swap <args> <<<\n$(NO_COLOR)"
+	@echo "$(GREEN)[ ✓ ] $(BOLD)$(NAME) compiled successfully!$(RESET)"
+	@echo "$(GREEN)>>> Use ./push_swap <args> <<<$(RESET)"
 
 bonus:			all $(BONUS_NAME)
 
 $(BONUS_NAME):	$(COMMON_OBJS) $(BONUS_OBJS) $(LIBFT_A)
+	@echo "$(CYAN)[ → ] Linking $(BOLD)$(NAME)...$(RESET)"
 	@$(COMPILE) $(COMMON_OBJS) $(BONUS_OBJS) -L$(LIBFT) -lft -o $(BONUS_NAME)
-	@echo "$(GREEN)$(BONUS_NAME)$(NO_COLOR) created successfully.\n"
-	@echo "$(GREEN)>>> Use ./push_swap <args> | ./checker <args> <<<\n$(NO_COLOR)"
+	@echo "$(GREEN)[ ✓ ] $(BOLD)$(BONUS_NAME) compiled successfully!$(RESET)"
+	@echo "$(GREEN)>>> Use ./push_swap <args> | ./checker <args> <<<$(RESET)"
 
 
 $(LIBFT_A): $(LIBFT)*.c $(LIBFT)*.h $(LIBFT)Makefile
@@ -74,6 +80,7 @@ $(LIBFT_A): $(LIBFT)*.c $(LIBFT)*.h $(LIBFT)Makefile
 
 $(DIR_OBJ)%.o:			%.c
 	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)[ ℹ ] Compiling $<...$(RESET)"
 	@$(COMPILE) -c $< -o $@
 
 norminette:
@@ -92,55 +99,55 @@ norminette:
 	@echo "$(CYAN)[ ℹ ] Norminette check completed.$(RESET)"
 
 clean:
+	@echo "$(RED)[🧹 ] Cleaning object files...$(RESET)"
 	@make clean -s -C $(LIBFT)
 	@$(RM) $(DIR_OBJ)
-	@echo "$(GREEN)OBJ files removed.$(NO_COLOR)"
 
 fclean:			clean
+	@echo "$(RED)[🧹 ] Cleaning executable...$(RESET)"
 	@make fclean -s -C $(LIBFT)
 	@$(RM) $(NAME) $(BONUS_NAME)
-	@echo "$(GREEN)Executable files removed.$(NO_COLOR)"
 
 re:				fclean all
 
-tester: $(NAME) norminette
-	@echo "$(YELLOW)╔════════════════════════════════════╗$(RESET)"
-	@echo "$(YELLOW)║    Launching test on Push_Swap     ║$(RESET)"
-	@echo "$(YELLOW)╚════════════════════════════════════╝$(RESET)"
-	@echo "$(CYAN)→ Cloning push_swap_tester...$(RESET)"
+tester: norminette
+	@echo "$(YELLOW)╔═══════════════════════════════════╗$(RESET)"
+	@echo "$(YELLOW)║>>> Launching test on Push_Swap <<<║$(RESET)"
+	@echo "$(YELLOW)╚═══════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)[ → ] Cloning push_swap_tester...$(RESET)"
 	@git clone -q https://github.com/NikoStano/push_swap_tester.git
 	@cat push_swap_tester/test_ps.sh > test_ps.sh
 	@chmod +x test_ps.sh
 	@rm -rf push_swap_tester
-	@echo "$(GREEN)✓ push_swap_tester cloned successfully!$(RESET)"
+	@echo "$(GREEN)[ ✓ ] push_swap_tester cloned successfully!$(RESET)"
 	@echo "$(CYAN)→ Running all tests...$(RESET)"
 	@./test_ps.sh || true
-	@echo "$(CYAN)✓ All tests ran! Cleaning up...$(RESET)"
+	@echo "$(CYAN)[ ✓ ] All tests ran! Cleaning up...$(RESET)"
 	@$(MAKE) -s fclean
 	@rm -f test_ps.sh
-	@echo "$(L_GREEN)✓ All tests completed$(RESET)"
+	@echo "$(L_GREEN)[ ✓ ] All tests completed$(RESET)"
 
 test: $(NAME)
-	@echo "$(YELLOW)--- Testing push_swap ---$(NO_COLOR)"
-	@echo "$(BLUE)Test with 5 numbers: $(NO_COLOR)"
+	@echo "$(YELLOW)--- Testing push_swap ---$(RESET)"
+	@echo "$(BLUE)Test with 5 numbers: $(RESET)"
 	@./$(NAME) 3 1 2 5 4
 	@echo ""
-	@echo "$(BLUE)Test with 100 random numbers (operations count):$(NO_COLOR)"
+	@echo "$(BLUE)Test with 100 random numbers (operations count):$(RESET)"
 	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
 	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
 	@echo ""
-	@echo "$(BLUE)Test with 100 random numbers and checker:$(NO_COLOR)"
+	@echo "$(BLUE)Test with 100 random numbers and checker:$(RESET)"
 	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
 	./$(NAME) "$$ARG" | ./checker "$$ARG"
 	@echo ""
-	@echo "$(BLUE)Test with 500 random numbers (operations count):$(NO_COLOR)"
+	@echo "$(BLUE)Test with 500 random numbers (operations count):$(RESET)"
 	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
 	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
 	@echo ""
-	@echo "$(BLUE)Test with 500 random numbers and checker:$(NO_COLOR)"
+	@echo "$(BLUE)Test with 500 random numbers and checker:$(RESET)"
 	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
 	./$(NAME) "$$ARG" | ./checker "$$ARG"
 	@echo ""
-	@echo "$(GREEN)--- Tests complete ---$(NO_COLOR)"
+	@echo "$(GREEN)--- Tests complete ---$(RESET)"
 
 .PHONY:			all norminette clean fclean re bonus test
