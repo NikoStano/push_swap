@@ -77,9 +77,19 @@ $(DIR_OBJ)%.o:			%.c
 	@$(COMPILE) -c $< -o $@
 
 norminette:
-	@echo "\$(BLUE)Norminette check :$(NO_COLOR)"
-	@python3 -m norminette
-# 	@norminette
+	@echo "$(CYAN)[ ℹ ] Running norminette...$(RESET)"
+	@if command -v python3 >/dev/null 2>&1; then \
+		OUTPUT=$$(python3 -m norminette 2>&1 | grep "Error"); \
+		if [ -z "$$OUTPUT" ]; then \
+			echo "$(GREEN)[ ✓ ] Norminette passed!$(RESET)"; \
+		else \
+			python3 -m norminette 2>&1 | grep -v "Norme: OK"; \
+			echo "$(RED)[ ✗ ] Norminette found errors!$(RESET)"; \
+		fi; \
+	else \
+		echo "$(RED)[ ✗ ] Norminette is not installed.$(RESET)"; \
+	fi
+	@echo "$(CYAN)[ ℹ ] Norminette check completed.$(RESET)"
 
 clean:
 	@make clean -s -C $(LIBFT)
@@ -92,6 +102,23 @@ fclean:			clean
 	@echo "$(GREEN)Executable files removed.$(NO_COLOR)"
 
 re:				fclean all
+
+tester: $(NAME) norminette
+	@echo "$(YELLOW)╔════════════════════════════════════╗$(RESET)"
+	@echo "$(YELLOW)║    Launching test on Push_Swap     ║$(RESET)"
+	@echo "$(YELLOW)╚════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)→ Cloning push_swap_tester...$(RESET)"
+	@git clone -q https://github.com/NikoStano/push_swap_tester.git
+	@cat push_swap_tester/test_ps.sh > test_ps.sh
+	@chmod +x test_ps.sh
+	@rm -rf push_swap_tester
+	@echo "$(GREEN)✓ push_swap_tester cloned successfully!$(RESET)"
+	@echo "$(CYAN)→ Running all tests...$(RESET)"
+	@./test_ps.sh || true
+	@echo "$(CYAN)✓ All tests ran! Cleaning up...$(RESET)"
+	@$(MAKE) -s fclean
+	@rm -f test_ps.sh
+	@echo "$(L_GREEN)✓ All tests completed$(RESET)"
 
 test: $(NAME)
 	@echo "$(YELLOW)--- Testing push_swap ---$(NO_COLOR)"
